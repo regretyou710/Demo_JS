@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JavaScript編寫位置</title>
+  <script>
+    // 在script標籤內編寫js
+    alert('js測試');
+  </script>
+
+  <!--透過script標籤引入js代碼。script標籤一旦引入外部文件，就不能再編寫代碼，即使編寫瀏覽器也會忽略-->
+  <script src='js/script.js'></script>
+</head>
+
+<body>
+  <!--在標籤的onclick屬性編寫js-->
+  <button onclick="alert(' 按鈕js測試');">按鈕js測試</button>
+
+  <!--在超連結的href屬性編寫js-->
+  <a href="javascript:alert('超連結js測試');">超連結js測試</a>
+</body>
+
+</html>
