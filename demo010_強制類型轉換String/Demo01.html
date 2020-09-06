@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>強制類型轉換String</title>
+    <script>
+        /*
+         強制類型轉換:指將一個數據類型強制轉換為其他數據類型
+         類型轉換主要指將其他數據類型轉為String、Number、Boolean
+
+         將其他數據類型轉為String
+         - 方式一:調用被轉換數據類型的toString()方法。該方法不會影響元變量，它會將轉換的結果返回。
+                  但須注意null和undefined這兩個值沒有toString()方法，如果調用它們的方法會拋異常。
+         - 方式二:調用String()函數。該方法將被轉換的數據作為參數傳遞給函數。
+                 使用tring()函數做強制類型轉換時，對於Number、Boolean實際上就是調用toString()方法。
+                 但是null和undefined，就不會調用toString()方法，它會將null直接轉為"null"，將undefined
+                 直接轉為"undefined"。
+        */
+
+        console.log('方式一');
+        var num = 123;
+        console.log(num);
+        console.log(typeof num);
+        //將num轉為String
+        num = num.toString();
+        console.log(num);
+        console.log(typeof num);
+
+        var bool = true;
+        bool = bool.toString();
+        console.log(bool);
+        console.log(typeof bool);
+
+        var _null = null;
+        _null = _null.toString();
+        console.log(_null);
+        console.log(typeof _null);
+        // Demo01.html:31 Uncaught TypeError: Cannot read property 'toString' of null
+
+        var _undefined = undefined;
+        // _undefined = _undefined.toString();
+        console.log(_undefined);
+        console.log(typeof _undefined);
+        // Uncaught TypeError: Cannot read property 'toString' of undefined
+
+
+        console.log('方式二');
+        var num1 = 123;
+        num1 = String(num1);
+        console.log(num1);
+        console.log(typeof num1);
+
+        var _null1 = null;
+        _null1 = String(_null1);
+        console.log(_null1);
+        console.log(typeof _null1);
+
+        var undefined1 = undefined;
+        undefined1 = String(undefined1);
+        console.log(undefined1);
+        console.log(typeof undefined1);
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

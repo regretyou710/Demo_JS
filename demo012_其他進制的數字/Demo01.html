@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>其他進制的數字</title>
+    <script>
+        /*
+         在JS中如果要表示16進制的數字，須以0x開頭。
+               如果要表示8進制的數字，須以0開頭。
+               如果要表示8進制的數字，須以0b開頭，但不是所有的瀏覽器都支持。
+        */
+
+        var num1 = 0x10;
+        console.log(num1);// 10進制輸出:16
+
+        var num2 = 070;
+        console.log(num2);// 10進制輸出:56
+
+        var num3 = 0b10;
+        console.log(num3);// 10進制輸出:2
+
+        // 像'070'這種字串，有些瀏覽器會當作8進制，有些瀏覽器會當作是10進制解析。
+        // 為避免這種不確定性情況可使用parseInt(string,number)函數
+        var str1 = '070';
+        //str1 = parseInt(str1);
+        str1 = parseInt(str1, 10);//第2參數指定數字進制  
+        console.log(str1);
+        console.log(typeof str1);        
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>強制類型轉換Number</title>
+    <script>
+        /*
+         將其他數據類型轉為Number
+         - 方式一:調用Number()函數。
+                 字串轉數字:
+                           1. 如果是純數字字串，則直接將其轉為數字。
+                           2. 如果字串中有非數字內容，則轉為NaN。
+                           3. 如果字串中是一個空字串或一個全是空個的空字串，則轉為0。
+                 布爾轉數字:
+                           true轉為1。
+                           false轉為0。
+                 null轉數字:
+                           轉為0。
+                 undefined轉數字:
+                                轉為NaN。
+         - 方式二:針對字串轉換
+                 parseInt()函數:把一個字串轉為整數。
+                 parseFloat()函數:把一個字串轉為浮點數。
+        */
+
+        console.log('方式一');
+        var numStr = '123';
+        str = Number(numStr);
+        console.log(numStr);
+        console.log(typeof numStr);
+
+        var str = '789abc';
+        str = Number(str);
+        console.log(str);// 值為NaN
+        console.log(typeof str);// 轉為Number類型
+
+        var str1 = '';
+        str1 = Number(str1);
+        console.log(str1);// 值為0
+        console.log(typeof str1);// 轉為Number類型
+
+        var bool = true;
+        bool = Number(bool);
+        console.log(bool);// 值為1
+        console.log(typeof bool);// 轉為Number類型
+
+        var _null = null;
+        _null = Number(_null);
+        console.log(_null);// 值為0
+        console.log(typeof _null);// 轉為Number類型
+
+        var _undefined = undefined;
+        _undefined = Number(_undefined);
+        console.log(_undefined);// 值為NaN
+        console.log(typeof _undefined);// 轉為Number類型
+
+        console.log('方式二');
+        var str2 = '123px';
+        str2 = parseInt(str2);
+        console.log(str2);// 值為123
+        console.log(typeof str2);// 轉為Number類型
+
+        var str3 = 'b456a123px';
+        str3 = parseInt(str3);
+        console.log(str3);// 值為NaN
+        console.log(typeof str3);// 轉為Number類型
+
+        var str4 = '123.567a567px';
+        str4 = parseInt(str4);
+        console.log(str4);// 值為123
+        console.log(typeof str4);// 轉為Number類型
+
+        var str5 = '123.456px';
+        str5 = parseFloat(str5);
+        console.log(str5);// 值為123.456
+        console.log(typeof str5);// 轉為Number類型
+
+        var str6 = '123.456.789px';
+        str6 = parseFloat(str6);
+        console.log(str6);// 值為123.456
+        console.log(typeof str6);// 轉為Number類型
+
+        //如果對非String使用parseInt()或parseFloat()，函數會先將其轉為String，然後再操作
+        var bool1 = true;
+        bool1 = parseInt(bool1);
+        console.log(bool1);// 值為NaN
+        console.log(typeof bool1);// 轉為Number類型
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

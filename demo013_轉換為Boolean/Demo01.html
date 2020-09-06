@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>轉換為Boolean</title>
+    <script>
+        /*
+         將其他數據類型轉換為Boolean
+         - 使用Boolean()函數。
+           數字轉布爾:
+                     除了0和NaN是false，其餘的都是true。
+           字串轉布爾:
+                     除了空字串是false，其餘都是true。
+           null和undefined轉布爾:
+                                都為false。
+           對象轉布爾:
+                     為true。
+        */
+
+        console.log('數字轉布爾');
+        var num = 123;
+        num = Boolean(num);
+        console.log(num); // 值為true
+        console.log(typeof num);// 轉為Boolean類型
+
+        var num1 = -123;
+        num1 = Boolean(num1);
+        console.log(num1); // 值為true
+        console.log(typeof num1);// 轉為Boolean類型
+
+        var num2 = 0;
+        num2 = Boolean(num2);
+        console.log(num2); // 值為false
+        console.log(typeof num2);// 轉為Boolean類型
+
+        var num3 = Infinity;
+        num3 = Boolean(num3);
+        console.log(num3); // 值為true
+        console.log(typeof num3);// 轉為Boolean類型
+
+        var num4 = NaN;
+        num4 = Boolean(num4);
+        console.log(num4); // 值為false
+        console.log(typeof num4);// 轉為Boolean類型
+
+        console.log('字串轉布爾');
+        var str = 'Hello';
+        str = Boolean(str);
+        console.log(str); // 值為true
+        console.log(typeof num4);// 轉為Boolean類型
+
+        var str1 = 'true';
+        str1 = Boolean(str1);
+        console.log(str1); // 值為true
+        console.log(typeof str1);// 轉為Boolean類型
+
+        var str2 = 'false';
+        str2 = Boolean(str2);
+        console.log(str2); // 值為true
+        console.log(typeof str2);// 轉為Boolean類型
+
+        var str3 = '布爾';
+        str3 = Boolean(str3);
+        console.log(str3); // 值為true
+        console.log(typeof str3);// 轉為Boolean類型
+
+        var str4 = '';
+        str4 = Boolean(str4);
+        console.log(str4); // 值為false
+        console.log(typeof str4);// 轉為Boolean類型
+
+        var str5 = ' ';
+        str5 = Boolean(str5);
+        console.log(str5); // 值為true
+        console.log(typeof str5);// 轉為Boolean類型
+
+        console.log('');
+        var _null = null;
+        _null = Boolean(_null);
+        console.log(_null); // 值為false
+        console.log(typeof _null);// 轉為Boolean類型
+
+        var _undefined = undefined;
+        _undefined = Boolean(_undefined);
+        console.log(_undefined); // 值為false
+        console.log(typeof _undefined);// 轉為Boolean類型
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
