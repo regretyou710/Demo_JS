@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>一元運算符</title>
+    <script>
+        /*
+         一元運算符，只需要一個操作數。
+         ▲對於非Number類型的值，它會先其轉為Number再進行運算。
+          可以對一個其他的數據類型使用+，來將其轉換為Number，它的原理和Number()函數一樣。
+
+         + :正號，不會對數字產生任何影響。 
+         - :負號，可以對數字進行負號的取反。
+        */
+
+        var a = 123;
+        //a = +a;// 結果返回123
+        //a = -a;// 結果返回-123
+        //a = -true;// 結果返回-1        
+        console.log('a= ' + a, ', typeof: ' + typeof a);
+
+        var i = '18';
+        //i = -i;
+        //console.log(i);// 結果返回-18
+        //若只是想將原變數類型轉為Number，則使用正號進行操作
+        i = +i;
+        console.log(i);// 結果返回18
+
+        var rs = 1 + +'2' + 3;
+        console.log(rs);// 結果返回6
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

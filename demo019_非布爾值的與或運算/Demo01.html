@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>非布爾值的與或運算</title>
+    <script>
+        /*
+         && || 非布爾值情況
+         - 對於非布爾值進行 與 或 運算時，會先將其轉為布爾值然後再運算，並且返回原值。
+         - &&運算:
+             如果兩個值都為true，則返回靠後面的值。
+             如果一真一假，返回假的值。
+             如果兩個值都為false，則返回靠前面的值。
+
+         - ||運算:
+             如果第一個值為true，則直接返回靠前面的值。
+             如果第一個值為false，則直接返回靠後面的值。
+        */
+
+        var rs = 1 && 2;// true && true 為true
+        console.log('rs= ' + rs);// rs=2
+        rs = 0 && 2;// false && true 為false
+        //rs = 2 && 0;// true && false 為false
+        console.log('rs= ' + rs);// rs=0
+        rs = NaN && 0;// false && false 為false
+        //rs = 0 && NaN;// false && false 為false
+        console.log('rs= ' + rs);// rs=NaN
+
+        var rs1 = 1 || 2;// true || true 為true
+        //rs1 = 2 || 1;// true || true 為true
+        console.log('rs1= ' + rs1);// rs1=1
+        rs1 = 2 || NaN;// true || false 為true
+        rs1 = 2 || 0;// true || false 為true
+        console.log('rs1= ' + rs1);// rs1=2
+        rs1 = NaN || 1;// false || true 為true
+        console.log('rs1= ' + rs1);// rs1=1
+        rs1 = NaN || 0;// false || false 為false
+        console.log('rs1= ' + rs1);// rs1=0
+
+        var rs2 = '' || 'Hello';// false || true 為true        
+        console.log('rs2= ' + rs2);// rs2=Hello
+        rs2 = -1 || '你好';// true || true 為true        
+        console.log('rs2= ' + rs2);// rs2=-1
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

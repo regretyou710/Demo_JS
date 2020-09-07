@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>算術運算符</title>
+    <script>
+        /*
+         運算符也叫操作符，透過運算符可以對一個或多個值進行運算，並獲得運算結果。
+         例如:typeof就是運算符，可以獲得一個值的類型，它會將該值的類型以字串形式返回。
+
+         算數運算符:
+          當對非Number類型的值進行運算時，會將這些值轉為Number然後再運算。
+          ▲任何值對NaN做運算都會得到NaN。
+          ▲任何值做- * /運算都會轉為Number，所以可以透過一個值進行-0 *0 /0操作來將其轉為Number。
+
+          + :可以對兩個值進行加法運算，並將結果返回。
+             如果對兩個字串進行加法運算，則會做拚串。任何的值和字串做加法運算，都會先轉換為字串，
+             然後再和字串做拚串的操作。
+          - :可以對兩個值進行減法運算，並將結果返回。
+          * :可以對兩個值進行乘法運算，並將結果返回。
+          / :可以對兩個值進行除法運算，並將結果返回。
+          % :取餘數。
+        */
+
+        var a = 123;
+        var result = typeof a;
+        console.log(result);// a是Number類型
+        //console.log(typeof result);// result是String類型
+
+        var i = 123;
+        var rs = typeof i;
+        rs = i + 1;
+        rs = true + false // 返回結果1
+        rs = 2 + null // 返回結果2
+        rs = 2 + NaN // 返回結果NaN
+        rs = '123' + '456'; // 返回結果123456
+        rs = 1 + '123'; // 返回結果1123
+        rs = true + '123';// 返回結果true123
+
+        rs = 100 - 5;// 返回結果95
+        rs = 100 - true;// 返回結果99
+        rs = 100 - '10';// 返回結果99(除了字串進行加法運算會進行拚串操作，其餘都會轉為Number)
+
+        rs = 2 * 2;// 返回結果4
+        rs = 2 * '8';// 返回結果16
+        rs = 2 * undefined;// 返回結果NaN
+        rs = 2 * null;// 返回結果0
+
+        rs = 4 / 2;// 返回結果2
+
+        rs = 9 % 3;// 返回結果0
+        rs = 9 % 4;// 返回結果1
+        console.log(rs);
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
