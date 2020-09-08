@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>相等運算符</title>
+    <script>
+        /*
+         相等運算符用來比較兩個值是否相等，如果相等會返回true，反之false。
+         使用 == 來做相等運算，如果值的類型不同，則會自動進行類型轉換然後再比較。
+
+         不相等運算符用來比較兩個值是否不相等，如果不相等會返回true，反之false。
+         使用 != 來做不相等運算，如果值的類型不同，則會自動進行類型轉換然後再比較。
+
+         === 用來判斷兩個值是否全等，它和相等類似但不會做自動類型轉換，如果兩個值類型不同直接返回false。
+
+         !== 用來判斷兩個值是否不全等，它和不相等類似但不會做自動類型轉換，如果兩個值類型不同直接返回true。
+        */
+
+        console.log(1 == 1);// true
+
+        var a = 10;
+        console.log(a == 4);// false
+
+        console.log('1' == 1);// true
+
+        //會將布爾值和字串轉為Number類型進行相等運算
+        console.log(true == 'true');// 1==NaN，false
+        console.log(true == '1');// 1==1，ture
+        console.log(true == 'hi');// 1==NaN，false
+
+        console.log(null == 0);// false
+
+        //undefined衍生自null，所以這兩個值做相等運算會返回true
+        console.log(undefined == null);// ture
+
+        //Nan不和任何值相等，包括它本身
+        console.log(NaN == NaN);// false
+        console.log(NaN == 1);// false
+        console.log(NaN == '1');// false
+        console.log(NaN == undefined);// false
+        //判斷b值是否為NaN
+        var b = NaN;
+        //console.log(b == NaN);// 無法判斷出正確的結果，可以透過isNaN()函數
+        console.log(isNaN(b));// ture
+
+        console.log(10 != 5);// ture
+        console.log(10 != 10);// false
+        console.log('abc' != 'abc');// false
+        console.log('1' != 1);// false
+
+        console.log('123' == 123);// true
+        console.log('123' === 123);// false
+        console.log(null == undefined);// true
+        console.log(null === undefined);// false
+
+        console.log(1 != '1');// false
+        console.log(1 !== '1');// true
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

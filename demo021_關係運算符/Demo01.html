@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>關係運算符</title>
+    <script>
+        /*
+         透過關係運算符可以比較兩個值之間的大小關係
+         如果關係運算符成立會返回true，反之則返回false。
+
+         非數值情況:
+         - 對於非數值進行比較時，會將其轉為數字然後再進行比較。
+         - 任何值和NaN進行比較，都是false。
+         - 如果符號兩側都是字串時，不會將其轉為數字比較，而會分別比較字串中字元的Unicode編碼。
+           比較字串時比較的是字元編碼，是一位一位進行比較的。如果兩位一樣，則比較下一位。
+        */
+
+        var rs = 5 > 10;// false
+        rs = 5 > 4;// true
+        rs = 5 > 5;// false
+        rs = 5 >= 4;// true
+        rs = 5 >= 5;// true
+        rs = 5 < 4;// false
+        rs = 4 <= 4;// true
+        console.log('rs= ' + rs);
+
+        console.log(1 > true);// 1>true=1，false
+        console.log(1 >= true);// 1>=true=1，true
+        console.log(1 > '0');// 1>0，true
+        console.log(10 > null);// 1>0，true
+        console.log(10 > 'hello');// 1>NaN，false
+        console.log(10 <= undefined);// 1>NaN，false
+        console.log(true > false);// 1>0，true
+        console.log('5' > '1');// 比較字串對應的Unicode值，5=35>1=31，true
+        console.log('5' > '11');// 5大於第一個1為true第二個1就不進行比較了，比較字串對應的Unicode值，true
+        console.log('a' > 'b');// 比較字串對應的Unicode值，false
+        console.log('b' > 'a');// 比較字串對應的Unicode值，true
+        console.log('abc' > 'b');// 比較字串對應的Unicode值，a=61>b=62，false
+        console.log('113' > '5');// 1=31>5=35，false
+
+        //如果要讓字串的113>5為真那麼就可使用+(正號)讓一邊字串轉為Number類型然後再進行比較
+        console.log('113' > +'5');// 113>5，true
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

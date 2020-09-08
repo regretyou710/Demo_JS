@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>條件運算符</title>
+    <script>
+        /*
+         條件運算符也稱三元運算符
+         語法: 條件表達式 ? 語句一 : 語句二;
+         - 如果條件表達式的求值結果是一個非布爾值，會將其轉為布爾值然後在運算。
+        */
+
+        //true ? alert('語句一') : alert('語句二');
+        //false ? alert('語句一') : alert('語句二');
+
+        var a = 10, b = 20;
+        var c = 33;
+        a > b ? alert('a大') : alert('b大');
+
+        //獲取a和b中最大值
+        var max = a > b ? a : b;
+        max = max > c ? max : c;
+        console.log('max= ' + max);
+        max = a > b ? (a > c ? a : c) : (b > c ? b : c);
+        console.log('max= ' + max);
+
+        'hello' ? alert('語句一') : alert('語句二');// 'hello'轉為true
+        '' ? alert('語句一') : alert('語句二');// ''轉為false
+    </script>
+
+</head>
+
+<body>
+
+</body>
+
+</html>
