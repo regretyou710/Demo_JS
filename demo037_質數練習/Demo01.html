@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>質數練習</title>
+    <script>
+        /*
+         在頁面中接收一個用戶輸入的數字，並判斷該數是否為質數。
+         質數:只能被1和自身整除的數，1不是質數也不是合數，質數必須是大於1的自然數。
+        */
+
+        var num = prompt('請輸入一個大於1的整數:');
+
+        //判斷數值是否合法
+        if (num <= 1) {
+            alert('該值不合法');
+        } else {
+            //設置一個變量來儲存當前num的狀態，默認當前num是質數
+            var flag = true;
+
+            //判斷num是否為質數
+            //獲取2~num之間的數
+            for (var i = 2; i < num; i++) {
+                //console.log(i);
+                //判斷範圍內的i能否被num整除，只被其中一個i不整除不表示一定質數，要所有的i不被整除才是質數。所以不以!=0的方向出發而是以==0方向出發。
+                if (num % i == 0) {
+                    //如果num能被整除，表示一定不是質數。
+                    //alert(num + '不是質數');
+                    flag = false;
+                }
+            }
+
+            //如果num是質數則輸出
+            if (flag == true) {
+                alert(num + '是質數');
+            } else {
+                alert(num + '不是質數');
+            }
+        }
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

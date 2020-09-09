@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>for循環練習</title>
+    <script>
+        //印出1~100所有奇數之合
+        var sum = 0;
+        for (var i = 1; i <= 100; i++) {
+            if (i % 2 != 0) {
+                document.write(i + '</br>');
+                sum += i;
+            }
+        }
+        document.write('1~100所有奇數之合= ' + sum)
+
+        //也可以將sum變量寫在for的初始化表達式中       
+        // for (var i = 1, sum = 0; i <= 100; i++) {
+        //     if (i % 2 != 0) {
+        //         document.write(i + '</br>');
+        //         sum += i;
+        //     }
+        // }
+        // document.write('1~100所有奇數之合= ' + sum)
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

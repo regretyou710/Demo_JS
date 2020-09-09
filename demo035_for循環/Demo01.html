@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>for循環</title>
+    <script>
+        /*
+         for語句循環，也是一個循環語句，也稱為for循環。
+         - 語法
+           for(初始化表達式;條件表達式;更新表達式){
+               語句...
+           }
+        - for循環流程
+         1. 執行初始化表達式，初始化變量(初始化表達式只會執行一次)。
+         2. 執行條件表達式，判斷是否執行循環。
+            如果為true，則執行 3. 語句。
+            如果為false，則終止循環。
+         4. 執行更新表達式，更新表達式執行完畢繼續重複2.
+        */
+
+        for (var i = 0; i < 10; i++) {
+            document.write(i + '</br>');
+        }
+
+        /*
+         for循環中的三個部分都可以省略，也可以寫在外面。
+         note:如果在for循環中不寫任何表達式，只寫兩個分號，此時循環是一個死循環，會一直執行下去。
+        */
+
+        var j = 0;
+        for (; j < 5;) {
+            document.write(j++ + '</br>');
+        }
+
+        // for(;;){
+        //     alert('dead lock');
+        // }
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
