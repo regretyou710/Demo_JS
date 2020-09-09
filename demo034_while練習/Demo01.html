@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>while練習</title>
+    <script>
+        /*
+         假設投資的年利率為5%，試求從1000元增長到5000元需花費多少年?
+         1000 * 1.05 = 1050
+         1050 * 1.05 = 1102.5
+         1000 * (1.05)*年次方 >=5000
+        */
+
+        var y = 0;
+        var money = 1000;
+        while (money < 5000) {
+            money = money * 1.05
+            document.write('本利和:' + money.toFixed(2) + '</br>');
+            y++;
+        }
+        alert('需花費' + y + '年');
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

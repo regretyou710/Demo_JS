@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>while循環</title>
+    <script>
+        /*
+         循環語句:透過循環語句可以重複執行一段代碼多次。
+
+         while循環:
+         - 語法
+           while(條件表達式){
+               語句...
+           }
+
+         do...while
+         - 語法
+           do{
+              語句...
+           }while(條件表達式)
+        */
+
+        //向頁面中輸出連續數字
+        var i = 0;
+        while (i < 10) {
+            document.write(++i + '</br>');
+        }
+
+        i = 20;
+        do {
+            document.write(i + '</br>');
+            i--;
+        } while (i > 0);
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

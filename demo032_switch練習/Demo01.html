@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>switch練習</title>
+    <script>
+        //對於成績大於60分的，輸出'合格'。低於60分的，輸出不合格。
+
+        var score = prompt('請輸入成績');
+        // if (score > 100 || score < 0 || isNaN(score)) {
+        //     alert('成績不合法');
+        // } else {
+        //     switch (true) {
+        //         case score >= 60:
+        //             alert('合格');
+        //             break;
+        //         default:
+        //             alert('不合格');
+        //             break;
+        //     }
+        // }
+
+        if (score > 100 || score < 0 || isNaN(score)) {
+            alert('成績不合法');
+        } else {
+            switch (parseInt(score / 10)) {
+                case 10:
+                case 9:
+                case 8:
+                case 7:
+                case 6:
+                    alert(parseInt(score / 10) + '合格');
+                    break;
+                default:
+                    alert('不合格');
+                    break;
+            }
+        }
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

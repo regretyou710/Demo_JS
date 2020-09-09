@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>if練習一</title>
+    <script>
+        /*
+         從鍵盤輸入成績:
+         1. 當成績為100時，獎勵一輛BMW
+         2. 當成績在80~99時，獎勵一支IPhone
+         3. 當成績在60~80時，獎勵一本參考書
+         4. 其他成績，什麼都沒有
+
+         使用prompt()函數，可以在文本框中輸入一段內容，該函數需要一個字串作為參數
+         ，該字串會作為提示框的提示文字。
+
+         note:在數字與字串進行關係運算時，避免進行運算自動將字串轉為Number出現NaN，
+         所以使用isNaN()函數進行判斷。
+        */
+
+        var score = prompt('請輸入成績');
+        console.log(typeof score);
+        if (score > 100 || score < 0 || isNaN(score)) {
+            alert('成績不合法');
+        } else {
+            if (score == 100) {
+                alert('獎勵一輛BMW');
+            } else if (score >= 80) {
+                alert('獎勵一支IPhone');
+            } else if (score >= 60) {
+                alert('獎勵一本參考書');
+            } else {
+                alert('沒有獎勵');
+            }
+        }
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
