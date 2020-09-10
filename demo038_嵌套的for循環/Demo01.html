@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>嵌套的for循環</title>
+    <script>
+        /*
+         透過程序，在畫面中呈現如下圖型:
+
+         *
+         **
+         ***
+         ****
+         *****
+        */
+
+        for (var row = 1; row < 6; row++) {
+
+            for (var col = 1; col < row + 1; col++) {
+                console.log('*');
+                document.write('*');
+            }
+            console.log('\r\n');
+            document.write('</br>');
+        }
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

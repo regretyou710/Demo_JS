@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>質數練習改進</title>
+    <script>
+        /*
+         印出1~100所有質數
+         
+         提升程序執行效率:在程序執行前開啟計時器console.time()。
+         - console.time('') 可以用來開啟一個計時器，它需要一個字串作為參數，這個字串會作為計時器的標示。
+         - console.timeEnd('') 可以用來停止一個計時器，它需要一個字串作為參數，這個字串和開啟計時器的參數名相同。
+        */
+
+        console.time('speed');
+        for (var i = 2; i <= 100; i++) {
+            var flag = true;
+
+            /*
+             縮小i的因數查找範圍:一旦i的因數找到某一個值時，後面的值就不需再往下執行
+             例如:i=36，則範圍2~35。而36的因數有
+             1*36
+             2*18
+             3*12
+             4*9
+             6*6
+             
+             只要找到6，6之後的因數就可以不用找了，因為與6以前的因數是一對的可以被36整除。
+             所以只要對i開根號來縮小查詢i因數的範圍。
+            */
+            for (var j = 2; j <= Math.sqrt(i); j++) {
+                if (i % j == 0) {
+                    flag = false;
+                    //一旦進入判斷，則證明i不可能是質數，此時循環就沒有意義了
+                    //使用break來結束循環
+                    break;
+                }
+            }
+            if (flag) {
+                document.write(i);
+                document.write('</br>');
+            }
+        }
+        console.timeEnd('speed');
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

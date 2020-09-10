@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>質數練習補充</title>
+    <script>
+        /*
+         印出1~100所有質數
+         
+         提升程序執行效率:在程序執行前開啟計時器console.time()。
+         - console.time('') 可以用來開啟一個計時器，它需要一個字串作為參數，這個字串會作為計時器的標示。
+         - console.timeEnd('') 可以用來停止一個計時器，它需要一個字串作為參數，這個字串和開啟計時器的參數名相同。
+        */
+
+        console.time('speed');
+        for (var i = 2; i <= 100; i++) {
+            var flag = true;
+            for (var j = 2; j < i; j++) {
+                if (i % j == 0) {
+                    flag = false;
+                    //一旦進入判斷，則證明i不可能是質數，此時循環就沒有意義了
+                    //使用break來結束循環
+                    break;
+                }
+            }
+            if (flag) {
+                document.write(i);
+                document.write('</br>');
+            }
+        }
+        console.timeEnd('speed');
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

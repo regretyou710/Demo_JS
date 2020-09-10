@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>break和continue</title>
+    <script>
+        /*
+         break關鍵字可以用來退出switch或循環語句
+         不能在if語句中使用break和continue
+         break關鍵字，會立即終止離他最近的那個循環語句
+        */
+
+        for (var i = 0; i < 5; i++) {
+            console.log(i);
+            if (i == 2) {
+                break;
+            }
+        }
+
+
+        // for (var i = 0; i < 5; i++) {
+        //     document.write('外層循環' + i);
+        //     document.write('</br>');
+        //     for (var j = 0; j < 5; j++) {
+        //         break;
+        //         document.write('&ensp;內層循環' + j);
+        //         document.write('</br>');
+        //     }
+        // }
+
+
+        /*
+         使用label可以標示break指定要終止的for循環
+         label:循環語句
+         
+         使用break語句時，可以在break後面跟著一個label，這樣break會結束指定的循環而不是最近的
+        */
+        outer:
+        for (var i = 0; i < 5; i++) {
+            document.write('外層循環' + i);
+            document.write('</br>');
+            for (var j = 0; j < 5; j++) {
+                break outer;
+                document.write('&ensp;內層循環' + j);
+                document.write('</br>');
+            }
+        }
+
+
+        /*
+         contiune關鍵字可以用來跳過當次循環，continue後面代碼不再執行，直接往更新表達式進行。
+         note:continue也是默認只離它最近循環語句起作用。
+        */
+        // for (var i = 0; i < 5; i++) {            
+        //     if (i == 2) {
+        //         continue;
+        //     }
+        //     console.log(i);
+        // }
+
+
+        // for (var i = 0; i < 5; i++) {
+        //     document.write('外層循環' + i);
+        //     document.write('</br>');
+        //     for (var j = 0; j < 5; j++) {
+        //         if (j == 1) {
+        //             continue;
+        //         }
+        //         document.write('&ensp;內層循環' + j);
+        //         document.write('</br>');
+        //     }
+        // }
+
+
+        //continue同樣可以使用label來標示
+        outer:
+        for (var i = 0; i < 5; i++) {
+            document.write('外層循環' + i);
+            document.write('</br>');
+            for (var j = 0; j < 5; j++) {
+                if (j == 1) {
+                    continue outer;
+                }
+                document.write('&ensp;內層循環' + j);
+                document.write('</br>');
+            }
+        }
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
