@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>對象字面量</title>
+    <script>
+        /*
+         使用對象字面量可以在創建對象時，直接指定對象中的屬性。
+         語法:{屬性名:屬性值,屬性名:屬性值...}
+         
+         - 對象字面量的屬性名可以加引號也可以不加，建議不加。如果要使用一些特殊的名字，則必須加引號。
+         - 屬性名和屬性質是一組一組值對結構，名和值之間使用冒號連接，多個名值對之間使用逗號隔開，如果一個屬性之後沒有其他的屬性就不用寫逗號。
+        */
+
+        //創建對象方式一:使用構造函數
+        var obj1 = new Object();
+        //創建對象方式二:使用對象字面量創建
+        var obj2 = {};
+        console.log(obj2);// {}
+        console.log(typeof obj2);// object
+        obj2.name = 'Eason';
+        console.log(obj2.name);// Eason
+
+        var obj3 = {
+            name: 'Judy',
+            age: 15,
+            gender: '女',
+            objs: { name: 'JudyObj' }
+        };
+        console.log(obj3);// {name: "Judy", age: 15, gender: "女", objs: {name: "JudyObj"}}
+        console.log(obj3.objs);// {name: "JudyObj"}
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>基本數據類型和引用數據類型</title>
+    <script>
+        /*
+         基本數據類型
+		   String
+		   Number
+		   Boolean
+		   Undefined
+		   Null
+		   
+		引用數據類型
+		   Object
+
+        Stack Memory:JS中的變量都是保存到棧內存中。
+         - 基本數據類型的值直接在棧內存中存儲。
+         - 值與值之間是獨立存在，修改一個變量不會影響其他的變量。
+		Heap Memory:對象是保存到堆內存中。
+         - 每創建一個新的對象，就會在堆內存中開闢出一個新的空間，而變量保存的是對象的內存地址(對象的引 用)，如果兩個變量保存的是同一個對象引用，當一個透過一個變量修改屬性時，另一個也會受到影響。
+        */
+
+        var a = 123;
+        var b = a;// a的值複製一份給b變量做為b的值
+        console.log('a=' + a);// 123
+        console.log('b=' + b);// 123
+        a++;
+        console.log('a=' + a);// 124
+        console.log('b=' + b);// 123
+        // a與b是獨立的，a值的變化不影響b值
+
+
+        var obj1 = new Object();
+        obj1.name = 'Eason';
+        var obj2 = obj1;
+        console.log(obj1.name);// Eason
+        console.log(obj2.name);// Eason
+
+        //修改obj的name屬性
+        obj1.name = 'Judy';
+        console.log(obj1.name);// Judy
+        console.log(obj2.name);// Judy
+
+        //設置obj2為null
+        //引用數據類型img3.jpg
+        obj2 = null;
+        console.log(obj1);// {name: "Judy"}
+        console.log(obj2);// null
+
+        /*
+         當比較兩個基本數據類型的值時，就是比較值。
+         而比較兩個引用數據類型時，它是比較對象的內存地址，如果兩個對象是一模一樣的但是地址不同，它也會返回false。
+        */
+        var c = 10;
+        var d = 10;
+        console.log(c == d);// true
+
+        var obj3 = new Object();
+        var obj4 = new Object();
+        obj3.name = 'Rose';
+        obj4.name = 'Rose';
+        console.log(obj3 == obj4);// false       
+    </script>
+</head>
+
+<body>
+    <img src="imgs/基本數據類型img1.jpg" alt="基本數據類型img1.jpg" title="基本數據類型img1.jpg" border="1" />
+    <img src="imgs/基本數據類型img2.jpg" alt="基本數據類型img2.jpg" title="基本數據類型img2.jpg" border="1" />
+    <img src="imgs/引用數據類型img1.jpg" alt="引用數據類型img1.jpg" title="引用數據類型img1.jpg" border="1" />
+    <img src="imgs/引用數據類型img2.jpg" alt="引用數據類型img2.jpg" title="引用數據類型img2.jpg" border="1" />
+    <img src="imgs/引用數據類型img3.jpg" alt="引用數據類型img3.jpg" title="引用數據類型img3.jpg" border="1" />
+    <img src="imgs/引用數據類型img4.jpg" alt="引用數據類型img4.jpg" title="引用數據類型img4.jpg" border="1" />
+</body>
+
+</html>

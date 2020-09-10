@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>對象的基本操作</title>
+    <script>
+        /*
+         創建對象:
+         - 使用new關鍵字調用的函數，是構造函數。構造函數是專門用來創建對象的函數
+         - 使用typeof檢查一個對象時，會返回object。
+
+         在對象中保存的值稱為屬性
+         - 向對象添加屬性
+           語法:對象.屬性名 = 屬性值;
+         - 讀取對象中的屬性。如果讀取對象中沒有的屬性，不會報錯而是會返回undefined。
+           語法:對象.屬性名;
+         - 修改對象的屬性值
+           語法:對象.屬性名 = 新值;
+         - 刪除對象的屬性
+           語法:delete 對象.屬性名;
+        */
+
+        var obj = new Object();
+        console.log(obj);// {}
+        console.log(typeof obj);// object
+
+        //向obj添加一個name屬性
+        obj.name = 'Eason';
+        //向obj添加一個gender屬性
+        obj.gender = '男';
+        //向obj添加一個age屬性
+        obj.age = 19;
+        console.log(obj);// {name: "Eason", gender: "男", age: 19}
+
+        //讀取obj屬性
+        console.log(obj.name + ',' + obj.gender + ',' + obj.age);// Eason,男,19
+        console.log(obj.id);// undefined
+
+        //修改obj屬性
+        obj.name = 'Judy';
+        console.log(obj.name);// Judy
+
+        //刪除obj屬性
+        delete obj.name;
+        console.log(obj.name);// undefined
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
