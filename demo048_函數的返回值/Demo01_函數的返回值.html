@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>函數的返回值</title>
+    <script>
+        /*
+         創建一個函數，用來計算三個數的和。
+         - 使用return來設置函數的返回值。
+         - 語法:
+             return 值;
+
+         - return後的值會將作回執行結果返回，可以定義一個變量來接收該結果。
+         - note:在函數中return後的語句都不會執行。        
+         - note:如果return語句後面不跟任何值就相當於返回一個undefined。
+         - note:如果函數中不寫return，也會返回undefined。
+         - return後面可以跟任意類型的值。
+        */
+
+        function sum(a, b, c) {
+            //alert(a + b + c);
+            var sum = a + b + c;
+            return sum;
+            alert('hello');// 不被執行
+        }
+
+        //調用函數
+        var rs = sum(1, 2, 3);
+        console.log('rs=' + rs);// 6
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>函數的簡介</title>
+    <script>
+        /*
+         函數
+           - 函數也是一個對象。
+           - 函數中可以封裝一些功能(代碼)，在需要時可以執行這些功能(代碼)。
+           - 函數中可以保存一些代碼在需要的時候調用。
+           - 使用typeof檢查一個函數對象時，會返回function。
+           - note:在實際開發中很少使用構造函數來創建一個函數對象。
+           - note:函數具有一般對象的所有功能，例如:設置屬性。
+        */
+
+        //創建一個函數
+        //可以將要封裝的代碼以字串的形式傳遞給構造函數
+        var fun = new Function("console.log('這是一個函數');");
+        console.log(typeof fun);// function
+        console.log(fun);// ƒ anonymous() {console.log('這是一個函數');}
+
+        //封裝到函數中的代碼不會立即執行
+        //調用函數 語法:函數對象()
+        //當調用函數時，函數中封裝的代碼會按照順序執行
+        fun();// 這是一個函數
+        fun();// 這是一個函數
+
+
+        /*
+         使用函數聲明來創建一個函數
+         - 語法:
+           function 函數名([形參1,形參2,...形參N]){
+               語句...
+           }
+        */
+        function fun2() {
+            console.log('使用函數聲明創建函數');
+            alert('使用函數聲明創建函數');
+            document.write('使用函數聲明創建函數');
+        }
+        console.log(fun2);
+        fun2();
+
+
+        /*
+         函數表達式:創建一個匿名函數將匿名函數的對象賦值給變量。
+
+         使用函數表達式來創建一個對象
+         - 語法:
+           var 函數名 = function([形參1,形參2,...形參N]){
+               語句...
+           };
+        */
+        var fun3 = function () {
+            console.log('使用函數表達式來創建一個對象');
+            alert('使用函數表達式來創建一個對象');
+            document.write('使用函數表達式來創建一個對象');
+        };
+        console.log(fun3);
+        fun3();
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

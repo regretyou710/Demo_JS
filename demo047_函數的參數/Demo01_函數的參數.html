@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>函數的參數</title>
+    <script>
+        /*
+        - 定義一個用來求兩個數的和函數。
+         - 可以在函數的括弧中來指定一個或多個形參(形式參數)。
+         - 多個形參之間使用逗號隔開，聲明形參就相當於在函數內部聲明了對應的變量，但並不賦值。
+        */
+
+        function sum(a, b) {
+            //console.log('a=' + a);
+            //console.log('b=' + b);
+            console.log(a + b);
+        }
+
+        //在調用函數時，可以在括弧中指定實參(實際參數)，實參將會賦值給函數中對應的型參。
+        sum(5, 2);// 7
+
+        /*
+         - 調用函數時解析器不會檢查實參的類型
+         - 須注意，是否可能接收到非法的參數，如果有可能，需要對參數進行類型的檢查
+         - 函數的實參可以是任意的數據類型
+        */
+        sum(123, 'hello');// 123hello
+        sum(true, false);// 1
+
+        //調用函數時，解析器也不會檢查實參數量，多餘實參不會被賦值
+        sum(567, 345, 'hello', true, null);// 912
+        //如果實參的數量少於形參數量，則沒有對應的實參的形參將會是undefined
+        sum(123);// 123 + undefined = NaN
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
