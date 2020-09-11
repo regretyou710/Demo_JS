@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>枚舉對象中的屬性</title>
+    <script>
+        /*
+         使用for...in語句枚舉出對象中的屬性
+         語法:
+           for(var 變量 in 對象){
+        
+           }
+
+         - for...in語句，對象有機個屬性循環體就會執行幾次。
+         - 每次執行時，會將對象中的一個屬性名賦值給變量。
+        */
+
+        var obj = {
+            name: 'Eason',
+            age: 45,
+            gender: '男',
+            address: '武當山'
+        }
+
+        for (var attribute in obj) {
+            console.log('屬性名:' + attribute);
+            console.log('屬性值:' + obj[attribute]);// 參見demo043使用
+        }
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

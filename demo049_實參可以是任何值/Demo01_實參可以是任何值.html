@@ -6,9 +6,66 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>實參可以是任何值</title>
     <script>
+        //定義一個函數，判斷一個數字是否為偶數，如果是返回true，反之false
+        function isEven(num) {
+            return num % 2 == 0;
+        }
+        var rs = isEven(5);
+        console.log(rs);// false
+        var rs = isEven(12);
+        console.log(rs);// true
+
+        //定義一個函數，可以根據半徑計算一個圓的面積，並返回計算結果
+        function area(radius) {
+            return Math.pow(radius, 2) * 3.14;
+        }
+        var rs = area(10);
+        console.log(rs);// 314
+
+        //創建一個函數，可以在控制台中輸出一個人的訊息，可輸入人的name、age、gender、address
+        function personInfo(name, age, gender, address) {
+            console.log('姓名:' + name + ', 年齡:' + age + ', 性別:' + gender + ', 地址:' + address);
+        }
+        personInfo('Eason', 34, '男', '武當山');
+
+        //實參可以是任意的數據類型，也可以是一個對象。當參數過多時，可以將參數封裝到一個對象中，然後透過對象傳遞。
+        function personInfoForObject(obj) {
+            console.log(
+                '姓名:' + obj.name +
+                ', 年齡:' + obj.age +
+                ', 性別:' + obj.gender +
+                ', 地址:' + obj.address);
+        }
+        var perobj = {
+            name: 'Judy',
+            age: 35,
+            gender: '女',
+            address: '峨嵋'
+        };
+        personInfoForObject(perobj);
+
+        //實參可以是一個對象，也可以是一個函數(函數是一個對象)
+        function fun(f) {
+            console.log('function:' + f);
+            //f('Eason', 34, '男', '武當山');
+        }
+        fun(personInfo);// function:function personInfo(name, age, gender, address) {console.log('姓名:' + name + ', 年齡:' + age + ', 性別:' + gender + ', 地址:' + address);}姓名:Eason, 年齡:34, 性別:男, 地址:武當山
+
+        //將匿名函數作為實參傳遞
+        fun(function () { alert('hello'); });// function:function(){alert('hello');}
+
+
         /*
-         
+         area(radius)
+         - 調用函數
+         - 相當於使用函數的返回值
+
+         area
+         - 函數對象
+         - 相當於使用函數對象
         */
+        fun(area(10));// function:314
+        fun(area);// function:function area(radius) {return Math.pow(radius, 2) * 3.14;}
     </script>
 </head>
 

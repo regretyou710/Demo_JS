@@ -6,9 +6,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>返回值的類型</title>
     <script>
-        /*
-         
-        */
+        function fun() {
+            alert('函數開始執行');
+            for (var i = 0; i < 5; i++) {
+                if (i == 2) {
+                    //使用break可以退出當前的循環
+                    //break;// 函數開始執行->0 1->函數結束執行
+
+                    //continue用於跳過當次循環
+                    //continue;// 函數開始執行->0 1 3 4->函數結束執行
+
+                    //使用return可以結束整個函數
+                    return;// 函數開始執行->0 1
+                }
+                console.log(i);
+            }
+            alert('函數結束執行');
+        }
+
+        fun();
+
+
+        //返回值可以是任意的數據類型，也可以是一個對象，也可以是一個函數
+        function fun2() {
+            //返回一個對象
+            return { name: 'Eason' };
+        }
+        var obj = fun2();
+        console.log(obj.name);// Eason
+
+        function fun3() {
+            //在函數內部再聲明一個函數
+            function fun4() {
+                alert('fun4函數');
+            }
+            //fun4();//在fun3()函數被調用時，再進而調用fun4()函數
+
+            return fun4;// 把fun4()函數返回
+            //return fun4();// 把fun4()函數執行內容返回
+        }
+        var f = fun3();
+        console.log(f);
+        f();// 調用fun3()函數返回的fun4()函數
+        fun3()();// 調用fun3()函數返回的fun4()函數
     </script>
 </head>
 

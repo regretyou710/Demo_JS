@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>立即執行函數</title>
+    <script>
+        /*
+         當匿名函數只需要使用一次就不再被使用，省去宣告變的接收會報錯，此時可以用括弧將整個匿名函數包起來，此時包起來就是一個函數對象。那麼要使用這樣的函數只要再函數對象後面再加上括弧就可以使用。
+         函數格式:函數對象();         
+        */
+
+        (function () {
+            alert('是一個匿名函數');
+        })();
+
+        (function (a, b) {
+            console.log('a=' + a);
+            console.log('b=' + b);
+        })(123, 456);
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>對象屬性是函數</title>
+    <script>
+        var obj = new Object();
+        obj.name = 'Eason';
+        obj.age = 24;
+        //對象屬性值可以是任何數據類型，也可以是函數
+        obj.sayName = function () {
+            console.log(ojb.name);
+        };
+        console.log(obj.sayName);//function () {console.log(ojb.name)};
+        //調用方法
+        obj.sayName();
+
+
+        /*
+         - 函數也可以稱為對象的屬性，如果一個函數作為一個對象的屬性保存，那麼稱這個函數為這個對象的方法，調用這個函數就說調用對象的方法(merhod)。
+         - 但它只是名稱上的區別，沒有其他的區別。
+        */
+        var obj2 = {
+            name: 'Judy',
+            age: 34,
+            sayName: function () { console.log(obj2.name); }
+        }
+        obj2.sayName();
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
