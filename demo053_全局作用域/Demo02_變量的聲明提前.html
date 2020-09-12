@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>變量的聲明提前</title>
+    <script>
+        /*
+         變量的聲明提前:
+         - 使用var關鍵字聲明的變量，護在所有的代碼執行之前被聲明(但是不會賦值)，
+           但是如果聲明的變量不是用var關鍵字，則變量不會被提前聲明。
+
+
+         console.log('a=' + a);// a=undefined
+         var a = 123;
+         以上a可以在13列輸出是因為第14列的變數宣告等同為:
+         var a;
+         console.log('a=' + a);// a=undefined
+         a = 123;
+
+
+         //沒有聲明var關鍵字而輸出a則會報錯
+         console.log('a=' + a);// Uncaught ReferenceError: a is not defined
+         a = 123;
+        */
+
+
+        /*
+         函數的聲明提前:
+         - 使用函數聲明形式創建的函數function 函數(){}，它會在所有的代碼執行之前就被創建，所以才可以在函數聲明前來調用。
+         - 使用函數表達式創建的函數，不會被聲明提前，所以不能在聲明前調用。
+        */
+
+        fun();// fun函數
+        fun2();// Uncaught TypeError: fun2 is not a function
+
+        //函數聲明，會被提前創建
+        function fun() {
+            console.log('fun函數');
+        }
+        //函數表達式，不會被提前創建
+        var fun2 = function () {
+            console.log('fun2函數');
+        }
+        
+        fun();// fun函數
+        fun2();// fun2函數
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

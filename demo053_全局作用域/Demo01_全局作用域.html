@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>全局作用域</title>
+    <script>
+        /*
+         - 作用域:指一個變量的作用範圍
+         - 在JS中一共有兩種作用域:
+           1. 全局作用域
+              - 直接編寫在script標籤中的JS代碼，都是全局作用域。
+              - 全局作用域在頁面打開時創建，在頁面關閉時銷毀。
+              - 在全局作用域中有一個全局對象window，它代表的是一個瀏覽器的窗口，它由瀏覽器創建我們可以直接使用。
+              - 在全局作用域中，創建的變量都會作為window對象的屬性保存。
+              - 在全局作用域中，創建的函數都會作為window對象的方法保存。
+              - 全局作用域中的變量都是全局變量，在頁面的任意的部份都訪問的到。           
+              2. 函數作用域
+              - 
+        */
+
+        function fun() {
+            var a = 123;
+        }
+        fun();
+        console.log(a);// Uncaught ReferenceError: a is not defined
+
+
+        //在瀏覽器中使用window對象屬性
+        console.log(typeof window);// object
+        var a = 10;
+        var b = 'hello';
+        console.log(window.a);// 10
+        console.log(window.b);// hello
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
