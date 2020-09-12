@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>this補充</title>
+    <script>
+        var name = '全局name';
+        function fun() {
+            //console.log(name);
+            console.log(this.name);
+        }
+
+        var obj1 = {
+            name: 'Eason',
+            sayName: fun
+        }
+
+        var obj2 = {
+            name: 'Judy',
+            sayName: fun
+        }
+
+        //當調用fun()函數時可以輸出該對象的name值
+        //此時fun()函數中的console.log(name);就必須使用this.name來輸出，才能夠表示出不同對象的name值。如果沒有使用this.name，console.log(name);會因為fun()函數中沒有name變量往上一層找到全局作用域的變量輸出。
+        obj1.sayName();
+        obj2.sayName();
+        fun();
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>使用工廠方法創建對象</title>
+    <script>
+        var obj1 = {
+            name: 'Eason',
+            age: 23,
+            gender: '男',
+            sayName: function () {
+                alert(this.name);
+            }
+        }
+
+        var obj2 = {
+            name: 'Judy',
+            age: 26,
+            gender: '女',
+            sayName: function () {
+                alert(this.name);
+            }
+        }
+
+        var obj3 = {
+            name: 'Mary',
+            age: 22,
+            gender: '女',
+            sayName: function () {
+                alert(this.name);
+            }
+        }
+
+        obj1.sayName();
+        obj2.sayName();
+        obj3.sayName();
+
+
+        /*
+         使用工廠模式創建對象
+         - 透過該函數可以大批量的創建對象
+        */
+
+        function createPerson(name, age, gender) {
+            //創建一個新的對象
+            var obj = new Object();
+
+            //向對象添加屬性
+            obj.name = name;
+            obj.age = age;
+            obj.gender = gender;
+            obj.sayName = function () { alert(this.name); };
+            //將新的對象返回
+            return obj;
+        }
+
+        //透過函數創建對象
+        var obj4 = createPerson('Eason', 23, '男');
+        var obj5 = createPerson('Judy', 26, '女');
+        var obj6 = createPerson('Rose', 24, '女');
+        console.log(obj4);// {name: "Eason", age: 23, gender: "男", sayName: ƒ}
+        console.log(obj5);// {name: "Judy", age: 26, gender: "女", sayName: ƒ}
+        console.log(obj6);// {name: "Rose", age: 24, gender: "女", sayName: ƒ}
+        obj4.sayName();
+        obj5.sayName();
+        obj6.sayName();
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
