@@ -6,9 +6,124 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>構造函數</title>
     <script>
+        function createPerson(name, age, gender) {
+            //創建一個新的對象
+            var obj = new Object();
+
+            //向對象添加屬性
+            obj.name = name;
+            obj.age = age;
+            obj.gender = gender;
+            obj.sayName = function () { alert(this.name); };
+
+            //將新的對象返回
+            return obj;
+        }
+
+        function createDog(name, age) {
+            //創建一個新的對象
+            var obj = new Object();
+
+            //向對象添加屬性
+            obj.name = name;
+            obj.age = age;
+            obj.sayHello = function () { alert('汪汪!'); };
+
+            //將新的對象返回
+            return obj;
+        }
+
+        var obj1 = createPerson('Eason', 23, '男');
+        var obj2 = createDog('Herry', 2);
         /*
-         
+         使用工廠模式創建的對象，所用的構造函數都是Object()，
+         所以創建的對象都是Object這個類型，導致無法區分出多種不同類型的對象。
         */
+        console.log(obj1);
+        console.log(obj2);
+
+
+        /*
+         創建構造函數:
+         - 構造函數就是一個普通的函數，創建方式和普通函數沒有區別，不同在於構造函數習慣首字母大寫。
+         
+         構造函數和普通函數的區別在於調用方式不同:
+         - 普通函數是直接調用，而構造函數需要使用new關鍵字調用。
+
+         構造函數的執行流程:
+         1. 在Heap Memory中創建一個新的對象
+         2. 將新建的對象設置為函數中this，在構造函數中可以使用this來引用新建的對象
+         3. 逐列執行函數中的代碼
+         4. 將新建的對象作為返回值返回
+
+         使用同一個構造函數創建的對象，稱為一類對象，也將一個構造函數稱為一個類。
+         透過一個構造函數創建的對象，稱為該類的實例。
+
+         this的情況:
+         1. 當以函數的形式調用時，this是window對象
+         2. 當以方法的形式調用時，誰調用方法this是就是該對象
+         3. 當以構造函數的形式調用時，this就是新創建的那個對象
+        */
+
+
+        function Person() {
+            //document.write(this);// [object Object]
+            name = 'Eason';// 表示是向全局作用域添加屬性，相等於window.name = 'Eason';
+            this.name = 'Judy';// 表示是向Person對象加屬性
+            this.age = 34;
+            this.gender = '女';
+            this.sayName = function () {
+                alert(this.name);
+            };
+        }
+        var person = new Person();
+        console.log(person);
+        console.log(name);// Eason
+        console.log(person.name);// Judy
+
+
+        {
+            function Person_1(name, age, gender) {
+                this.name = name;
+                this.age = age;
+                this.gender = gender;
+                this.sayName = function () {
+                    alert(this.name);
+                };
+            }
+            var p1 = new Person_1('Eason', 34, '男');
+            var p2 = new Person_1('Judy', 33, '女');
+            var p3 = new Person_1('Rose', 24, '女');
+            console.log(p1);
+            console.log(p2);
+            console.log(p3);
+
+            function Dog() {
+
+            }
+            var d1 = new Dog();
+            console.log(d1);
+            //此時透過建構函數創建對象就可以區分出不同類型的對象
+        }
+
+
+        /*
+         使用instanceof可以檢查一個對象是否是一個類的實例
+         語法:
+           對象(實例) intstanceof 構造函數名
+           如果是則返回true，反之false。
+        */
+        console.log(p1 instanceof Person_1);// true
+        console.log(d1 instanceof Dog);// true
+        console.log(p1 instanceof Dog);// false
+        console.log(d1 instanceof Person_1);// false
+
+
+        /*
+         所以有的對象都是Object的衍生類，所以任何對象和Object做instanceof檢查時都會返回true。
+        */
+        console.log(p1 instanceof Object);// true
+        console.log(d1 instanceof Object);// true
     </script>
 </head>
 
