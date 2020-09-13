@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>forEach</title>
+    <script>
+        var arr = ['Eason', 'Judy', 'Rose', 'Mark', 'Mary'];
+
+
+        /*
+         JS還提供一個方法用來遍歷陣列，forEach()
+         note:注意瀏覽器版本是否支持
+
+         - forEach()方法需要一個函數作為參數
+         - 不使用function fun(){}; 一般不在全局作用域添加屬性
+         - 這種函數，由我們創建都不是由我們調用，稱為回調函數
+         - 陣列中有幾個元素函數就會執行幾次，每次執行時，瀏覽器會將遍歷到的元素以實參的形式傳遞進來
+           ，我們可以來定義型參讀取內容
+
+         - 瀏覽器會在回調函數中傳第三個參數:
+           第一個參數:當前正在遍歷的元素
+           第二個參數:當前正在遍歷的元素的索引
+           第三個參數:正在遍歷的數組
+        */
+        arr.forEach(
+            function (value, index, obj, param4) {
+                console.log('value: ' + value);
+                console.log('index: ' + index);
+                console.log('obj: ' + obj);
+                console.log(obj == arr);// true
+                console.log(typeof obj);// object
+                console.log('param4: ' + param4);// undefined
+                console.log('----------------------------');
+            }
+        );
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
