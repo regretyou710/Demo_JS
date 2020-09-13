@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>陣列簡介</title>
+    <script>
+        /*
+         內建對象
+         宿主對象
+         自定義對象
+
+         陣列(Array)
+         - 陣列也是一個對象
+         - 它和普通對象功能類似，也是用來儲存一些值
+         - 不同的是普通對象是使用字串作為屬性名，而陣列是使用數字來作為索引操作元素
+         - 索引:從0開始的整數索引
+         - 陣列的儲存性能比普通對象好，在開發中經常使用陣列來儲存一些數據
+        */
+
+        var arr = new Array();
+        console.log(arr);// []
+        console.log(typeof arr);// object
+
+
+        //向陣列中添加元素
+        //語法:陣列[索引] = 值;
+        arr[0] = 12;
+        arr[1] = 22;
+        arr[2] = 33;
+
+
+        //讀取陣列中的元素
+        //語法:陣列[索引]
+        //如果讀取不存在的索引，它不會報錯而是返回undefined
+        console.log(arr[0]);// 12
+        console.log(arr[1]);// 22
+        console.log(arr[2]);// 33
+
+
+        //取得陣列長度，可以使用length屬性來獲取陣列的長度(元素個數)
+        //語法:陣列.length
+        //對於連續的陣列，使用length可以獲取到陣列的長度(元素的個數)        
+        console.log('陣列長度:' + arr.length);// 陣列長度:3
+
+
+        //對於非連續的陣列，使用length會獲取到陣列的最大索引+1
+        //arr[10] = 232;// 陣列長度:11
+        //console.log('陣列長度:' + arr.length);// 陣列長度:3
+        //arr[100] = 138;// 陣列長度:101
+        //console.log('陣列長度:' + arr.length);// 陣列長度:3
+
+
+        //length可以用來設置陣列長度
+        //如果修改的length大於原來長度，則多出來的部份會為null
+        //如果修改的length小於原來長度，則多出來的元素會被刪除
+        // console.log(arr);// [ 12, 22, 33 ]
+        // console.log('原來長度:' + arr.length);// 原來長度:3
+        // arr.length = 10;
+        // console.log(arr);// [ 12, 22, 33, <7 empty slots> ]
+        // console.log('大於原來長度:' + arr.length);// 大於原來長度:10
+        // arr.length = 1;
+        // console.log(arr);// [ 12 ]
+        // console.log('小於原來長度:' + arr.length);// 小於原來長度:1
+
+
+        //向陣列中最後一個位置添加元素
+        //語法:陣列[陣列.length] = 值;
+        arr[arr.length] = 70;
+        console.log(arr);
+        arr[arr.length] = 80;
+        console.log(arr);
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

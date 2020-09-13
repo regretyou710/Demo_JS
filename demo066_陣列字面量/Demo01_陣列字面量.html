@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>陣列字面量</title>
+    <script>      
+        //創建一個陣列
+        //var arr = new Array();
+
+
+        //使用字面量創建陣列
+        //語法:[]
+        //var arr = [];
+        //console.log(typeof arr);// object
+
+
+        //使用字面量創建陣列時，可以在創建時就指定陣列中的元素
+        var arr = [1, 2, 3, 4, 5];
+        console.log(arr);// [ 1, 2, 3, 4, 5 ]
+
+
+        //使用構造函數創建陣列時，也可以同時添加元素，將要添加的元素作為構造函數的參數傳遞
+        //元素之間使用逗號隔開
+        var arr2 = new Array(1, 2, 3, 4, 5);
+        console.log(arr2);// [ 1, 2, 3, 4, 5 ]
+
+
+        arr = [10];// 表示創建一個陣列，陣列中只有一個元素10
+        console.log(arr.length);// 1
+        console.log(arr);// [ 10 ]
+        console.log(arr[0]);// 10
+
+
+        arr2 = new Array(10);// 表示創建一個長度10的陣列
+        console.log(arr2.length);// 10
+        console.log(arr2);// [ <10 empty slots> ]
+        console.log(arr2[0]);// undefined
+
+
+        //陣列中的元素可以是任意的數據類型
+        arr = ['hello', 1, true, null, undefined];
+        console.log(arr);// [ "hello", 1, true, null, undefined ]
+
+
+        //也可以是對象
+        var obj = { name: 'Eason' };
+        arr[arr.length] = obj;
+        console.log(arr);//  [ "hello", 1, true, null, undefined, {…} ]
+        console.log(arr[5]);//  { name: "Eason" }
+        console.log(arr[5].name);// Eason
+
+
+        //也是一個函數
+        arr = [function () { alert(1); }, function () { alert(2); }];
+        console.log(arr);// [ƒ, ƒ]
+        //arr[0]();
+
+
+        //陣列中也可以放陣列，如下這種陣列稱為二維陣列
+        arr = [[1, 2, 3], [4, 5, 6], [7, 8, 9]];
+        console.log(arr);// [ (3) […], (3) […], (3) […] ]
+        console.log(arr[0]);// [1, 2, 3]
+        console.log(arr[1]);// [4, 5, 6]
+        console.log(arr[2]);// [7, 8, 9]
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
