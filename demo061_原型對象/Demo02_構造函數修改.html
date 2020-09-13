@@ -22,13 +22,16 @@
             //     alert(this.name);
             // };
 
-            this.sayName = fun;
+            //this.sayName = fun;
         }
         //將sayName方法在全局作用域中定義()，可以保證所有Person對象中的sayName方法都是同一個
         //將函數定義在全局作用域，污染了全局作用域的命名空間，而且定義在全局作用域也很不安全。
-        function fun() {
-            alert(this.name);
-        };
+        // function fun() {
+        //     alert(this.name);
+        // };
+
+        //向原型對象中添加sayName方法
+        Person.prototype.sayName = function () { alert(this.name); };
 
         var p1 = new Person('Eason', 34, '男');
         var p2 = new Person('Judy', 33, '女');

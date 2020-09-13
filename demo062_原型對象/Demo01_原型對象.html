@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>原型對象</title>
+    <script>
+        /*
+         
+        */
+        function MyClass() {
+
+        }
+
+        //向原型對象中添加屬性
+        MyClass.prototype.name = '原型對象中name屬性';
+        var mc = new MyClass();
+        mc.age = 19;
+
+        console.log(mc.name);// 原型對象中name屬性
+
+        //檢查mc中有無name屬性，如果對象中沒有但原型對象中有，也會返回true
+        console.log('name' in mc);// true
+
+        //可以使用對象的hasOwnProperty()來檢查對象自身中是否含有該屬性
+        //hasOwnProperty()只有當對象自身中含有屬性時，才會返回true
+        console.log(mc.hasOwnProperty('name'));// false
+        console.log(mc.hasOwnProperty('age'));// true
+
+        //mc沒有主動添加hasOwnProperty()
+        //1. hasOwnProperty()方法來自mc對象?
+        console.log(mc.hasOwnProperty('hasOwnProperty'));// false
+        //2. hasOwnProperty()方法來自原型對象?(以下兩者等價)
+        console.log(mc.__proto__.hasOwnProperty('hasOwnProperty'));// false
+        console.log(MyClass.prototype.hasOwnProperty('hasOwnProperty'));// false
+
+        /*
+         3. 原型對象也是對象，所以它也有原型。
+            - 當使用一個對象的屬性或方法時，會在自身中尋找，自身中如果有則直接使用，
+              如果沒有則去原型對象中尋找，如果原型對象中有則使用，如果沒有則去原型的
+              原型中尋找，直到找到Object對象的原型，Object對象的原型沒有原型，如果在
+              Object中依然沒有找到，則返回undefined。
+         (原型對象img1.jpg)
+        */
+        console.log(mc.__proto__.__proto__);// Object { … }，原型對象中確實有原型對象
+        console.log(mc.__proto__.__proto__.hasOwnProperty('hasOwnProperty'));// true
+        console.log(mc.__proto__.__proto__.__proto__);// null，只到原型對象中的原型對象
+        console.log(mc.gender);// undefined，mc對象中沒有gender屬性
+    </script>
+</head>
+
+<body>
+    <img src="img/原型對象img1.jpg" alt="原型對象img1.jpg" title="原型對象img1.jpg" border="1" />
+</body>
+
+</html>

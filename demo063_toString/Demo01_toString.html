@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>toString</title>
+    <script>
+        /*
+         
+        */
+        function Person(name, age, gender) {
+            this.name = name;
+            this.age = age;
+            this.gender = gender;
+        }
+        var p1 = new Person('Eason', 34, '男');
+        var p2 = new Person('Judy', 33, '女');
+        // 當直接在頁面中印出一的對象時，實際上是輸出對象的toString()方法的返回值        
+        console.log(p1);
+
+        var rs = p1.toString();
+        console.log(rs);
+
+        console.log(p1.toString());
+
+        console.log(p1.hasOwnProperty('toString'));// false
+        console.log(p1.__proto__.hasOwnProperty('toString'));// false
+        console.log(p1.__proto__.__proto__.hasOwnProperty('toString'));// true
+
+        //如果希望在輸出時不輸出[object Object]，可以為對象添加一個toString()方法
+        //p1自己有toString方法就不再往原型對象找toString方法
+        p1.toString = function () {
+            return this.constructor.name + '[name=' + this.name + ' ,age=' + this.age + ' ,gender=' + this.gender + ']';
+        };
+        console.log(p1);
+        console.log(p2);
+
+        var rs = p1.toString();
+        var rs1 = p2.toString();
+        console.log(rs);
+        console.log(rs1);
+
+        console.log(p1.toString());
+        console.log(p2.toString());
+        console.log('因為只對p1增加toString方法所以p2仍然使用原型對象的toString方法');
+
+        //對原型對象的toString修改
+        //所有Person的實例都共用同一個toString方法
+        Person.prototype.toString = function () {
+            return this.constructor.name + '[name=' + this.name + ' ,age=' + this.age + ' ,gender=' + this.gender + ']';
+        };
+        console.log(p1);
+        console.log(p2);
+
+        var rs = p1.toString();
+        var rs1 = p2.toString();
+        console.log(rs);
+        console.log(rs1);
+
+        console.log(p1.toString());
+        console.log(p2.toString());
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
