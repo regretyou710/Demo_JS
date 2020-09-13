@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <script>
+        function Person(name, age) {
+            this.name = name;
+            this.age = age;
+        }
+        //對原型對象的toString修改
+        //所有Person的實例都共用同一個toString方法
+        Person.prototype.toString = function () {
+            return this.constructor.name + '[name=' + this.name + ' ,age=' + this.age + ']';
+        };
+
+
+        //創建對象
+        var p1 = new Person('Eason', 34,);
+        var p2 = new Person('Judy', 16,);
+        var p3 = new Person('Rose', 26,);
+        var p4 = new Person('Mark', 23,);
+
+
+        //將所有對象放進陣列中
+        var arr = [p1, p2, p3, p4];
+        console.log(arr);// [ {…}, {…}, {…}, {…} ]
+
+        {
+            //建立一個函數，可以從arr陣列中滿18歲的Person物件取出，然後封裝到新的陣列中返回
+            function getAdult(array) {
+                //var newArr = new Array();
+                var newArr = [];
+
+                for (var i = 0; i < array.length; i++) {
+                    if (array[i].age >= 18) {
+                        //console.log(array[i]);
+                        newArr.push(array[i]);
+                    }
+                }
+
+                return newArr;
+            }
+            //調用函數
+            var rs = getAdult(arr);
+            console.log(rs);
+        }
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

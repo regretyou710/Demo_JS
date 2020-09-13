@@ -6,9 +6,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>陣列的四個方法</title>
     <script>
+        var arr = ['Eason', 'Judy', '伊森', '茱蒂'];
         /*
-         
+         push()
+          - 該方法可以向陣列的末尾添加一個或多個元素，並返回陣列新的長度
+          - 可將要添加的元素作為方法的參數傳遞，這樣這些元素將會自動添加到陣列的末尾
         */
+        arr.push('Rose');
+        console.log(arr);// [ "Eason", "Judy", "伊森", "茱蒂", "Rose" ]
+        var rs = arr.push('Tina', 'Jacky');
+        console.log(arr);// [ "Eason", "Judy", "伊森", "茱蒂", "Rose", "Tina", "Jacky" ]
+        console.log('rs=' + rs);// 返回陣列新的長度
+
+
+        /*
+         pop()
+         - 該方法可以刪除陣列的最後一個元素，並將被刪除的元素作為返回值返回
+        */
+        console.log('刪除前陣列中元素:' + arr);// Eason,Judy,伊森,茱蒂,Rose,Tina,Jacky
+        rs = arr.pop();
+        console.log('刪除後陣列中元素:' + arr + ' ,被刪除元素:' + rs);// Eason,Judy,伊森,茱蒂,Rose,Tina
+        rs = arr.pop();
+        console.log('刪除後陣列中元素:' + arr + ' ,被刪除元素:' + rs);// Eason,Judy,伊森,茱蒂,Rose
+
+
+        /*
+         unshift()
+         - 向陣列開頭添加一個或多個元素，並返回新的陣列長度
+         - 向開頭插入元素後，其他元素的索引會依次調整
+        */
+        console.log('新增前陣列中元素:' + arr);// Eason,Judy,伊森,茱蒂,Rose
+        rs = arr.unshift('Jacky');
+        console.log('新增後陣列中元素:' + arr + ' ,陣列長度:' + rs);// Jacky,Eason,Judy,伊森,茱蒂,Rose
+        rs = arr.unshift('Tina');
+        console.log('新增後陣列中元素:' + arr + ' ,陣列長度:' + rs);// Tina,Jacky,Eason,Judy,伊森,茱蒂,Rose
+
+
+        /*
+         shift()
+         - 可以刪除陣列的第一個元素，並將被刪除的元素作為返回值返回
+        */
+        console.log('刪除第一個元素前陣列中元素:' + arr);// Tina,Jacky,Eason,Judy,伊森,茱蒂,Rose
+        rs = arr.shift();
+        console.log('刪除第一個元素後陣列中元素:' + arr + ' ,被刪除元素:' + rs);// Jacky,Eason,Judy,伊森,茱蒂,Rose
     </script>
 </head>
 
