@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>arguments</title>
+    <script>
+        /*
+         在調用函數時，瀏覽器每次都會傳遞進兩個隱含參數
+           1. 函數的上下文對象this
+           2. 封裝實參的對象arguments
+              - arguments是一個類似陣列對象，它也可以透過索引來操作數據，也可以獲取長度
+              - 在調用函數時，所傳遞的實參都會在arguments中保存
+              - arguments.length可以用來獲取實參的長度
+              - 即使不定義形參，，也可以透過argumenets來使用實參，只不過比較麻煩
+                arguments[0] 表示第一個實參
+                arguments[1] 表示第二個實參
+                ...
+                ....
+              - 它裡面有一個屬性叫做callee，這個屬性對應一個函數對象，就是當前正在執行的函數對象
+        */
+
+        function fun() {
+            //console.log(arguments);// [callee: ƒ, Symbol(Symbol.iterator): ƒ]
+            //console.log(typeof arguments);// object
+            //console.log(arguments instanceof Array);// false
+            //console.log('檢查是否為一個陣列:' + Array.isArray(arguments));// false
+            console.log(arguments.length);
+            console.log(arguments[0] + ',' + arguments[1]);
+            console.log(arguments.callee);
+            //console.log(arguments.callee == fun);// true
+        }
+
+        fun('hello', true);
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

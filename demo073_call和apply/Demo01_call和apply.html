@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>call和apply</title>
+    <script>
+        /*
+         call()和apply()
+         - 這兩個方法都函數對象的方法，需透過函數對象來調用
+         - 當對函數調用call()和apply()都會調用函數執行
+         - 在調用call()和apply()可以將一個對象指定為第一個參數，
+           此時這個對象將會成為函數執行時的this
+         - call()方法可以將實參在對象之後依次傳遞
+         - apply()方法需要將實參封裝到一個陣列中統一傳遞
+
+         - this的情況:
+           1. 當以函數的形式調用時，this是window對象
+           2. 當以方法的形式調用時，誰調用方法this是就是該對象
+           3. 當以構造函數的形式調用時，this就是新創建的那個對象
+           4. 使用call和apply調用時，this是指定的那個對象
+        */
+        {
+            function fun() {
+                alert('fun()函數');
+            }
+            console.log(fun);
+
+            //三者效果相同
+            //fun();
+            //fun.call();
+            //fun.apply();
+
+            // function fun1() {           
+            //     alert(this);
+            // }
+            // var obj1 = { name: 'obj1' };
+            // var obj2 = { name: 'obj2' };
+            // fun1();// [object Window]
+            // fun1.call(obj1);// [object Object]
+            // fun1.call(obj2);// [object Object]
+            // fun1.apply(obj1);// [object Object]
+            // fun1.apply(obj2);// [object Object]
+        }
+
+
+        {
+            function fun2() {
+                alert(this.name);
+            }
+            var obj1 = {
+                name: 'obj1',
+                sayName: function () {
+                    alert(this.name);
+                }
+            };
+            var obj2 = {
+                name: 'obj2'
+            };
+            // fun2.call(obj1);// obj1
+            // fun2.call(obj2);// obj2
+            // fun2.apply(obj1);// obj1
+            // fun2.apply(obj2);// obj2
+
+            obj1.sayName();// obj1
+            obj1.sayName.apply(obj2);// obj2
+            obj1.sayName.call(obj2);// obj2
+        }
+
+
+        {
+            function fun3(a, b) {
+                console.log(this);
+                console.log('a=' + a + ' ,b=' + b);
+            }
+            fun3.call(obj1, 2, 3);// { name: "obj1", sayName: sayName() } a=2 ,b=3
+            //fun3.apply(obj1, 2, 3);// Uncaught TypeError: second argument to Function.prototype.apply must be an array
+            fun3.apply(obj1, [2, 3]);// { name: "obj1", sayName: sayName() } a=2 ,b=3
+        }
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
