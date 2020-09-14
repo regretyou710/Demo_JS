@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>slice和splice</title>
+    <script>
+        var arr = ['Eason', 'Judy', 'Rose', 'Mark', 'Mary'];
+        /*
+         slice()
+         - 可以用來從陣列提取指定元素
+         - 該方法不會改變原陣列，而是將擷取到的元素封裝到一個新的陣列中返回
+         - 參數:
+           1. 擷取開始的位置的索引，包含開始索引
+           2. 擷取結束的位置的索引，不包含結束索引
+           - 第二個參數可以省略不寫，此時會擷取從開始索引往後的有元素
+           - 索引可以傳遞一個負值，如果傳遞一個負值，則從後往前計算，-1倒數第一個，-2倒數第二個
+        */
+        var rs = arr.slice(0, 2);
+        console.log(arr);// [ "Eason", "Judy", "Rose", "Mark", "Mary" ]
+        console.log(rs);// [ "Eason", "Judy" ]
+        rs = arr.slice(1, 2);
+        console.log(rs);// [ "Judy" ]
+        rs = arr.slice(1);
+        console.log(rs);// [ "Judy", "Rose", "Mark", "Mary" ]
+        rs = arr.slice(1, -1);
+        console.log(rs);// [ "Judy", "Rose", "Mark" ]
+        rs = arr.slice(1, -2);
+        console.log(rs);// [ "Judy", "Rose" ]
+
+
+        /*
+         splice()
+         - 可以用於刪除陣列中的指定元素
+         - 使用splice()會影響到原陣列，會將指定元素從原陣列中刪除，並將被刪除的元素作為返回值返回
+         - 參數:
+           第一個，表示開始位置的索引
+           第二個，表示刪除的數量
+           第三個及第n個，可以傳遞一些新的元素，這些元素將會自動插入到開始位置索引
+        */
+        var rs = arr.splice(0, 2);
+        console.log(arr);// [ "Rose", "Mark", "Mary" ]
+        console.log('被刪除元素:' + rs);// Eason,Judy
+        arr = ['Eason', 'Judy', 'Rose', 'Mark', 'Mary'];
+        rs = arr.splice(1, 2, 'Tom', 'Ken', 'Lisa');
+        console.log(arr);// [ "Eason", "Tom", "Ken", "Lisa", "Mark", "Mary" ]
+        console.log('被刪除元素:' + rs);// Judy,Rose
+        rs = arr.splice(1, 0, 'Dora');
+        console.log(arr);// [ "Eason", "Dora", "Tom", "Ken", "Lisa", "Mark", "Mary" ]
+        console.log('被刪除元素:' + rs);// []
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

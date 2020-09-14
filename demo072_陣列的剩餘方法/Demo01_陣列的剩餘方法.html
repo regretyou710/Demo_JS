@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>陣列的剩餘方法</title>
+    <script>
+        var arr = ['Eason', 'Judy', 'Rose'];
+        var arr2 = ['Tim', 'Mark', 'Mary'];
+        /*
+         concat():可以連接兩個或多個陣列，並將新的陣列返回
+         - 該方法不會對原陣列產生影響
+        */
+        var rs = arr.concat(arr2);
+        console.log(arr);// ['Eason', 'Judy', 'Rose']
+        console.log(arr2);// ['Tim', 'Mark', 'Mary']
+        console.log(rs);// [ "Eason", "Judy", "Rose", "Tim", "Mark", "Mary" ]
+        rs = arr.concat(arr2, 'Ken', 'Tina');
+        console.log(rs);// [ "Eason", "Judy", "Rose", "Tim", "Mark", "Mary", "Ken", "Tina" ]
+
+
+        /*
+         join()
+         - 該方法可以將陣列轉換為一個字串
+         - 該方法不會對原陣列產生影響，而是將轉換後的字串作為結果返回
+         - 在join()中可以指定一個字串作為參數，這個字串將會成為陣列中元素的連接符
+           如果不指定連接符，則默認使用逗號作為連接符
+        */
+        rs = arr.join();
+        console.log(arr);// [ "Eason", "Judy", "Rose" ]
+        console.log(typeof arr);// object
+        console.log(rs);// Eason,Judy,Rose
+        console.log(typeof rs);// string
+        rs = arr.join('/');
+        console.log(rs);// Eason/Judy/Rose
+
+
+        /*
+         reverse()
+         - 該方法用來反轉陣列
+         - 該方法會直接修改原陣列
+        */
+        arr.reverse();
+        console.log(arr);// [ "Rose", "Judy", "Eason" ]
+
+
+        {
+            /*
+             sort()
+            - 可以用來對陣列中的元素進行排序
+            - 也會影響原陣列，默認會按照Unicode編碼進行排序
+            */
+            arr = ['b', 'd', 'e', 'a', 'c'];
+            arr.sort();
+            console.log(arr);// [ "a", "b", "c", "d", "e" ]
+            //arr.reverse();
+            //console.log(arr);// [ "e", "d", "c", "b", "a" ]
+
+
+            /*
+             - 對於純數字的陣列，使用sort()，也會按照Unicode編碼來排序，所以對數字進行排序時，可能會得到錯誤的結果
+
+             - 我們可以指定排序的規則:
+               在sort()添加一個回調函數，來指定排序規則，回調函數中需要定義兩個參數，
+               瀏覽器將會分別使用陣列中的元素作為實參去調用回調函數。使用哪個元素調用
+               不確定，但是肯定的是在陣列中a一定在b前面
+
+             - 瀏覽器會根據回調函數的返回值來決定元素的順序
+                 如果返回一個大於0的值，則元素會交換
+                 如果返回一個小於0的值，則元素位置不變
+                 如果返回一個0，則認為兩個元素相等，也不交換位置
+
+             - 如果需要升序排列，則返回a-b。如果需要降序排列，則返回b-a。
+            */
+            arr = [3, 4, 11, 2, 5, 5, 2];
+            arr.sort();
+            console.log(arr);// [ 11, 2, 2, 3, 4, 5, 5 ]
+
+            arr.sort(function (a, b) {
+                //console.log('a=' + a + ' ,b=' + b);                
+                if (a > b) {
+                    return 1;
+                } else if (a < b) {
+                    return -1;
+                } else {
+                    return 0;
+                }
+
+                //return a-b;
+                //return b-a;
+            }
+            );
+            console.log(arr);
+        }
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
