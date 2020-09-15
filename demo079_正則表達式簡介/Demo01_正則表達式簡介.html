@@ -6,9 +6,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>正則表達式簡介</title>
     <script>
-       /*
-        
-       */
+        /*
+         正則表達式用於定義一些字串的規則，計算機可以根據正則表達式來檢查一個字串是否符合規則
+         ，獲取將字串中符合規則的內容提取出來
+ 
+         語法:
+           var 變量 = new RegExp('正則表達式','匹配模式');
+           - 匹配模式參數可以是:
+             i 忽略大小寫
+             g 全局匹配模式
+
+         正則表達式的方法:
+           test():使用這個方法可以用來檢查一個字串是否符合正則表達式的規則，
+                  如果符合則範回true，反之返回false
+        */
+
+        //創建正則表達式的對象
+        var reg = new RegExp('a');//這個正則表達式來檢查一個字串使否含有a
+        //console.log(reg);// /a/
+        //console.log(typeof reg);// object
+        var str = 'a';
+        var rs = reg.test(str);
+        console.log(rs);// true
+        console.log(reg.test('bcd'));// false
+
+
+        reg = new RegExp('a', 'i');// 檢查字串中是否還有a且忽略大小寫
+        console.log(reg.test('A'));// true
+        console.log(reg.test('a'));// true
     </script>
 </head>
 

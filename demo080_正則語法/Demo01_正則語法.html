@@ -6,9 +6,64 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>正則語法</title>
     <script>
-       /*
-        
-       */
+        /*
+         使用字面量來創建正則表達式
+         語法: var 變量 = /正則表達式/匹配模式;
+         - 使用字面量的方式創建更加簡單，使用構造函數創建更加靈活
+        */
+
+        var reg = new RegExp('a', 'i');
+        console.log(reg.test('abc'));// true
+        reg = /a/i;
+        console.log(reg.test('ABC'));// true
+
+
+        //創建一個正則表達式，檢查一個字串中是否有a或b
+        //使用|表示或者的意思
+        reg = /a|b/i;
+        console.log(reg.test('Binary'));// true
+        console.log(reg.test('ASCII'));// true
+        console.log(reg.test('Byte'));// true
+
+
+        //創建一個正則表達式，檢查一個字串中是否有字母
+        //[]裡的內容也是或的關係
+        //[ab] == a|b
+        //[a-z]任意小寫字母
+        //[A-Z]任意大寫字母
+        //[A-z]任意字母
+        reg = /[ab]/i;
+        console.log(reg.test('Binary'));// true
+        console.log(reg.test('ASCII'));// true
+        console.log(reg.test('Byte'));// true
+        reg = /[a-b]/;
+
+
+        //檢查一個字串中是否含有abc或adc或aec
+        reg = /a[bde]c/;
+        console.log(reg.test('abc'));// true
+        console.log(reg.test('adc'));// true
+        console.log(reg.test('aec'));// true
+        console.log(reg.test('aeec'));// false，aee c
+        console.log(reg.test('abcec'));// true，abc ec
+
+        //[^ ]除了
+        reg = /[^ab]/;//檢查字串中是否符合除了ab以外的字元
+        console.log(reg.test('basic'));// true
+        console.log(reg.test('byte'));// true
+        console.log(reg.test('ascii'));// true
+        console.log(reg.test('int'));// true
+        console.log(reg.test('abc'));// true
+        console.log(reg.test('cab'));// true
+        console.log(reg.test('acb'));// true
+        console.log(reg.test('ab'));// false
+
+
+        //[0-9]任意數字
+        reg = /[^0-9]/;
+        console.log(reg.test('123'));// false
+        console.log(reg.test('1a23'));// true
+        console.log(reg.test(123));// false
     </script>
 </head>
 
