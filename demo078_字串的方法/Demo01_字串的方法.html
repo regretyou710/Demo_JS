@@ -6,9 +6,134 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>字串的方法</title>
     <script>
-       /*
-	    
-	   */
+        /*
+         在底層字串是以字串陣列的形式保存
+         ['H','e','l','l','o',' ','J','A','V','A']
+ 
+         
+        */
+
+        var str = 'Hello JAVA';
+        console.log(str[0]);
+
+
+        //length屬性
+        //可以用來獲取字串長度
+        console.log(str.length);
+
+
+        //charAt()
+        //可以返回字串指定位置的字元
+        var rs = str.charAt(0);
+        console.log(rs);
+
+
+        //charCodeAt()
+        //取得指定位置字元的字元編碼(Unicode編碼)
+        rs = str.charCodeAt();
+        console.log(rs);
+
+
+        //fromCharCode()
+        //可以根據字元編碼去獲取字元
+        rs = String.fromCharCode(72);
+        console.log(rs);
+
+
+        //concat()
+        //可以用來連接兩個或多個字串，作用和+一樣
+        rs = str.concat('你好', '爪哇');
+        console.log(rs);
+        console.log(str);// 對原字串不會影響
+
+
+        //indexOf():該方法可檢索一個字串中是否含有指定內容
+        //如果字串中含有該內容，則會返回其第一次出現的索引
+        //如果沒有找到指定的內容，則返回-1
+        //第二個參數可以指定開始查找的位置
+        str = 'Hello JAVA';
+        rs = str.indexOf('l');
+        console.log(rs);// 2
+        rs = str.indexOf('A', 8);
+        console.log(rs);// 9
+
+
+        //lastIndexOf()
+        //該方法的用法和indexOf()一樣，不同的是indexOf是從前往後找，而lastIndexOf()是從後往前找
+        //也可以指定開始找查的位置
+        rs = str.lastIndexOf('l');
+        console.log(rs);// 3
+        rs = str.lastIndexOf('A', 8);
+        console.log(rs);// 7
+
+
+        /*
+         slice():可以從字串中擷取指定的內容
+         - 不會影響原字串，而是將擷取到內容返回
+         - 參數:
+             第一個，開始位置的索引(包括開始位置)
+             第二個，結束位置索引(不包括結束位置)
+             - 如果省略第二個參數，則會擷取到所有後面的字元
+             - 也可以傳遞一個負數作為參數，負數的話將會從後面計算
+         */
+        rs = str.slice(0, 4);
+        console.log(str);// Hello JAVA
+        console.log(rs);// Hell
+        rs = str.slice(2, -1);// 第三個字元到倒數第一個字元但不包括倒數第一個字元
+        console.log(rs);// llo JAV
+
+
+        /*
+         substring():可以用來擷取一個字串與slice()類似
+         - 參數:
+             第一個，開始擷取位置的索引(包括開始位置)
+             第二個，結束位置索引(不包括結束位置)
+            - 不同的是這個方法不能接收負值作為參數，如果傳遞一個負值，則默認使用0
+            - 如果第二個參數小於第一個，則會自動調整參數位置自動交換
+        */
+        rs = str.substring(0, 4);
+        console.log(str);// Hello JAVA
+        console.log(rs);// Hell
+        rs = str.substring(1, -1);
+        console.log(rs);// H
+        rs = str.substring(1, -100);
+        console.log(rs);// H
+
+
+        /*
+         substr()：用來擷取字串
+         - 參數:
+             第一個，擷取開始位置的索引
+             第二個，擷取的長度
+        */
+        rs = str.substr(2, 5);
+        console.log(rs);// llo J
+
+
+        /*
+         split():可以將一個字串拆分為一個陣列
+         - 參數:
+           需要一個字串做為參數，將會根據該字串去拆分陣列
+         note:如果傳遞一個空字串，則會將每個字元都拆分為陣列中的一個元素 
+        */
+        str = 'abc,bcd,efg,hij';
+        rs = str.split(',');
+        console.log(Array.isArray(rs));// true
+        console.log(rs.length);// 4
+        rs = str.split('');
+        console.log(rs);
+
+
+        //toUpperCase():將字串轉換為大寫並返回
+        str = 'abcdefg';
+        rs = str.toUpperCase();
+        console.log(rs);// ABCDEFG
+
+
+        //toLowerCase():將字串轉換為小寫並返回
+        str = 'ABCDEFG';
+        rs = str.toLowerCase();
+        console.log(rs);// abcdefg
     </script>
 </head>
 

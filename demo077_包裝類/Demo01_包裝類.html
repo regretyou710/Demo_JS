@@ -6,9 +6,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>包裝類</title>
     <script>
-       /*
-	    
-	   */
+        /*
+         基本數據類型
+         Number String Boolean Null Undefined
+
+         引用數據類型
+         Object
+
+         在JS中提供三種包裝類，透過這三個包裝類可以將基本數據類型的數據轉換為對象
+           String()
+            - 可以將基本數據類型字串轉換為String對象
+           Number()
+            - 可以將基本數據類型數字轉換為Number對象
+           Boolean()
+            - 可以將基本數據類型布爾值轉換為Boolean對象
+         
+         - 在實際應用中不會使用基本數據類型的對象，如果使用基本數據類型的對象，在做一些比較時
+           可能會帶來一些不可預期的結果  
+        */
+
+        var num = new Number(123);
+        console.log(typeof num);// object
+        //向num中添加一個屬性
+        num.hello = 'abcdefg';
+        console.log(num.hello);// abcdefg
+
+        var str = new String('hello');
+        console.log(typeof str);// object
+
+        var bool = new Boolean(true);
+        console.log(typeof bool);// object
+
+
+        /*
+         方法和屬性只能添加給對象，不能添加給基本數據類型
+         當我們對一些基本數據類型的值去調用屬性和方法時，瀏覽器會臨時使用包裝類將其轉換為對象，
+         然後再調用對象的屬性和方法，調用完後在將其轉換為基本數據類型
+        */
     </script>
 </head>
 
