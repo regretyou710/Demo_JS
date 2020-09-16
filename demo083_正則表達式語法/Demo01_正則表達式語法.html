@@ -6,7 +6,102 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>正則表達式語法</title>
     <script>
-       
+        {
+            /*
+             . 表示任意字元
+             
+             在正則表達式中使用\作為轉義字元
+             \. 來表示.
+             \\ 表示\
+
+             note:使用構造函數時，由於它的參數是一個字串，而\是字串中轉義字元
+             如果要使用\則需要使用\\來代替
+            */
+
+            //檢查一個字串中是否含有.
+            var reg = /\./;
+            console.log(reg.test('.'));// true
+            console.log(reg.test('www.google.com'));//true
+            console.log(reg.test('abc'));// false
+
+            reg = /\\/;
+            console.log(reg.test('\\'));//true
+
+            reg = new RegExp('\.');
+            console.log(reg);// /./
+            reg = new RegExp('\\.');
+            console.log(reg);// /\./
+        }
+
+
+        {
+            /*
+             \w 表示任意字母、數字、_ 相等於 [A-z0-9_]
+             \W 表示除了任意字母、數字、_ 相等於 [^A-z0-9_]
+             \d 表示任意的數字[0-9]
+             \D 表示除了數字[^0-9]
+             \s 表示空格
+             \S 表示除了空格
+             \b 表示單詞邊界
+             \B 表示除了單詞邊界
+            */
+
+            reg = /\w/;
+            console.log(reg.test('abc'));// true
+            console.log(reg.test('123'));// true
+            console.log(reg.test('_'));// true
+
+            reg = /\W/;
+            console.log(reg.test('abc'));// false
+            console.log(reg.test('123'));// false
+            console.log(reg.test('_'));// false
+
+            reg = /\d/;
+            console.log(reg.test('123'));// true
+            console.log(reg.test('abc'));// false
+
+            reg = /\D/;
+            console.log(reg.test('123'));// false
+            console.log(reg.test('abc'));// true
+
+            reg = /\s/;
+            console.log(reg.test('a b c'));// true
+            console.log(reg.test('abc'));// false
+
+            reg = /\S/;
+            console.log(reg.test(' '));// false
+            console.log(reg.test('abc'));// true
+
+            {
+                //創建一個正則表達式檢查一個字串中是否含有單詞child
+                reg = /child/;
+                console.log(reg.test('hello child'));// true
+                console.log(reg.test('child'));// true
+                console.log(reg.test('hello children'));// true
+                console.log(reg.test('hellochildren'));// true
+
+                reg = /\bchild\b/;
+                console.log(reg.test('hello child'));// true
+                console.log(reg.test('child'));// true
+                console.log(reg.test('hello children'));// false
+                console.log(reg.test('hellochildren'));// false                
+            }
+
+            //接收一個用戶的輸入
+            var str = prompt('請輸入你的用戶名:');
+            /*
+             需求:只去除掉字串中開頭和結尾的空格，中間有空格不去除
+             str.replace(/^\s/g,'')，在全局模式下還是只去除掉開頭第一個空格
+            
+             去除開頭空格
+             str.replace(/^\s＊/, '');
+             去除結尾空格
+             str.replace(/\s*$/,'');             
+            */
+            str = str.replace(/^\s*|\s*$/g, '');// 沒有加g只會去除開頭所有空格
+            console.log(str + '。');
+            console.log(str.length);
+        }
     </script>
 </head>
 
