@@ -6,7 +6,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>郵件的正則</title>
     <script>
-       
+        /*
+         電子郵件
+         hello.hello@abc.com.tw
+ 
+         任意字母數字下劃線.任意字母數字下劃線@任意字母數字.任意字母(2-5位).任意字母(2-5位)
+         - + 至少一個，相當於{1,}
+         - * 0個或多個，相當於{0,}
+ 
+ 
+         \w{3,}  (\.\w+)*  @  [A-z0-9]+  (\.[A-z]{2,5}){1,2}
+        */
+
+        var emailReg = /^\w{3,}(\.\w+)*@[A-z0-9]+(\.[A-z]{2,5}){1,2}$/;
+        var email = 'abc@abc.com';
+        console.log(emailReg.test(email));// true
+        email = 'abcd.efg@123xyz.com.tw';
+        console.log(emailReg.test(email));// true
+        email = '#!abcd.efg@123xyz.com.tw';
+        console.log(emailReg.test(email));// false
+        email = 'abcd.efg@123xyz.comaaa';
+        console.log(emailReg.test(email));// false
+        email = 'abcd.efg@123xyz.t';
+        console.log(emailReg.test(email));// false
+        email = 'abcd.efg@123xyz.com369';
+        console.log(emailReg.test(email));// false
     </script>
 </head>
 

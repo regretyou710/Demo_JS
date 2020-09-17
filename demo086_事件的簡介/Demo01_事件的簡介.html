@@ -5,13 +5,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>事件的簡介</title>
-    <script>
-       
-    </script>
 </head>
 
 <body>
+    <!-- 這種寫法結構和行為耦合，不方便維護不推薦使用 -->
+    <!-- <button id='btn' onclick="alert('點擊按鈕');">我是一個按鈕</button> -->
 
+    <!-- 為按鈕的對應事件綁定處理函數的形式來響應事件，這樣當事件被觸發時其對應的函數將會被調用 -->
+    <button id='btn'>我是一個按鈕</button>
+    </br>
+    </br>
+    <script>
+        /*
+         事件:就是用戶和瀏覽器之間的交互行為，例如:點擊按鈕、移動滑鼠、關閉窗口...
+         我們可以在事件對應的屬性中設置一些js代碼，這樣當事件被觸發時，這些代碼將會執行
+        */
+        var btn = document.getElementById('btn')
+
+        for (var att in btn) {
+            //輸出Button中所有屬性
+            console.log(att);
+        }
+
+        //按鈕綁定單擊事件
+        //像這種為單擊事件綁定的函數，我們稱為單擊響應函數
+        btn.onclick = function () {
+            alert('點擊按鈕');
+        }
+    </script>
+    <img src="img/DOM簡介img1.jpg" alt="DOM簡介img1.jpg" title="DOM簡介img1.jpg" border="1" /></br>
 </body>
 
 </html>
