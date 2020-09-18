@@ -32,7 +32,9 @@
             btn03.onclick = function () {
                 //查找name=gender的所有節點
                 var inputs = document.getElementsByName('gender');
+
                 alert(inputs.length);
+
                 for (var i = 0; i < inputs.length; i++) {
                     //innerHTML用於獲取元素內部的HTML代碼，對於自結束標籤這個屬性沒有意義
                     //alert(inputs[i].innerHTML);
@@ -45,13 +47,71 @@
                     //alert(inputs[i].className);
                 }
             };
+
+
+            var btn04 = document.getElementById('btn04');
+            btn04.onclick = function () {
+                //獲取id為city的元素
+                var city = document.getElementById('city');
+
+                //查找#city下所有li節點
+                var lis = city.getElementsByTagName('li');
+                for (var i = 0; i < lis.length; i++) {
+                    alert(lis[i]);
+                    //alert(lis[i].innerHTML);
+                }
+            };
+
+
+            var btn05 = document.getElementById('btn05');
+            btn05.onclick = function () {
+                //獲取id為city的元素
+                var city = document.getElementById('city');
+
+                //返回#city的所有子節點
+                /*
+                 childNodes屬性會獲取包括文本節點在內所有節點
+                 note:根據DOM標準標籤之間空白也會當成文本節點
+                 note:在IE8及以下的瀏覽器中，不會將空白文本當成子節點，所以該屬性在IE8中會返回4個子元素
+                      而其他瀏覽器是9個
+                */
+                var cns = city.childNodes;
+
+                alert('子節點:' + cns.length); // 9
+
+                // for (var i = 0; i < cns.length; i++) {
+                //     alert(cns[i]);
+                // }
+
+                //children屬性可以獲取當前元素的所有子元素
+                var cns2 = city.children;
+
+                alert('子元素:' + cns2.length); // 4
+            };
+
+
+            var btn06 = document.getElementById('btn06');
+            btn06.onclick = function () {
+                //返回#phone的第一個子節點
+                var phone = document.getElementById('phone');
+
+
+                //firstChild可以獲取到當前元素的第一個子節點(包括空白文本節點)
+                //var first = phone.childNodes[0];
+                var first = phone.firstChild;
+                alert(first);
+                alert(first.innerHTML);
+
+                //firstElementChild獲取當前元素的第一個子元素(不包括空白文本節點)
+                //note:firstElementChild不支持IE8及以下的瀏覽器，如果需要兼容它們盡量不要使用
+                first = phone.firstElementChild;
+                alert(first);
+                alert(first.innerHTML);
+            };
         };
 
 
         /*
-         查找#city下所有li節點
-         返回#city的所有子節點
-         返回#phone的第一個子節點
          返回#tp的父節點
          返回android的前一個兄弟節點
          返回#username的value屬性值
