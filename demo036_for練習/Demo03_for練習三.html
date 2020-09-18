@@ -17,20 +17,20 @@
             //取得百位數
 
             var num1 = parseInt(i / 100);
-            //document.write(num1 + '</br>');
+            //document.write(num1 + '<br/>');
             //取得十位數
 
             var num2 = parseInt((i - (num1 * 100)) / 10);
-            //document.write((i - (num1 * 100)) / 10 + '</br>');
-            //document.write(num2 + '</br>');
+            //document.write((i - (num1 * 100)) / 10 + '<br/>');
+            //document.write(num2 + '<br/>');
 
             //取得個位數
             var num3 = i % 10;
-            //document.write(num3 + '</br>');
+            //document.write(num3 + '<br/>');
 
             //判斷i是否為水仙花數
             if (Math.pow(num1, 3) + Math.pow(num2, 3) + Math.pow(num3, 3) == i) {
-                document.write(i + '</br>');
+                document.write(i + '<br/>');
             }
         }        
     </script>

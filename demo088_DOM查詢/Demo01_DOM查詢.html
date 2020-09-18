@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM查詢</title>
+    <script>
+        window.onload = function () {
+            var btn01 = document.getElementById('btn01');
+            btn01.onclick = function () {
+                //查找#tp節點
+                var tp = document.getElementById('tp');
+                //innerHTML 透過這個屬性可以獲取到元素內部的html代碼
+                alert(tp.innerHTML);
+            }
+
+
+            var btn02 = document.getElementById('btn02');
+            btn02.onclick = function () {
+                //查找所有li節點
+                //getElementsByTagName()可以根據標籤名來獲取一組元素節點對象，這個方法會返回一個類陣列對象，所有查詢到的元素都會封裝到對象中
+                var lis = document.getElementsByTagName('li');
+                alert(lis.length);
+                for (var i = 0; i < lis.length; i++) {
+                    alert(lis[i].innerHTML);
+                }
+            }
+
+
+            var btn03 = document.getElementById('btn03');
+            btn03.onclick = function () {
+                //查找name=gender的所有節點
+                var inputs = document.getElementsByName('gender');
+                alert(inputs.length);
+                for (var i = 0; i < inputs.length; i++) {
+                    //innerHTML用於獲取元素內部的HTML代碼，對於自結束標籤這個屬性沒有意義
+                    //alert(inputs[i].innerHTML);
+
+                    //如果需要讀取元素節點屬性，直接使用元素.屬性名
+                    //note:class屬性不能採用這種方式，讀取class屬性時需要使用元素.className(class是保留字)
+                    alert(inputs[i].value);
+                    //alert(inputs[i].name);
+                    //alert(inputs[i].type);
+                    //alert(inputs[i].className);
+                }
+            }
+
+
+
+        };
+
+
+        /*
+         查找#city下所有li節點
+         返回#city的所有子節點
+         返回#phone的第一個子節點
+         返回#tp的父節點
+         返回android的前一個兄弟節點
+         返回#username的value屬性值
+         設置#username的value屬性值
+         返回#tp的文本值
+         */
+    </script>
+</head>
+
+<body>
+    <div id='total'>
+        <div class='inner'>
+            <p>
+                你喜歡哪個城市?
+            </p>
+            <ul id='city'>
+                <li id='tp'>台北</li>
+                <li>台中</li>
+                <li>台南</li>
+                <li>高雄</li>
+            </ul>
+            <br />
+            <br />
+            <p>
+                你喜歡那款單機遊戲?
+            </p>
+            <ul id='game'>
+                <li id='rl'>紅警</li>
+                <li>魔獸</li>
+                <li>世紀帝國</li>
+                <li>仙劍</li>
+            </ul>
+            <br />
+            <br />
+            <p>你的手機操作系統是?</p>
+            <ul id='phone'>
+                <li>IOS</li>
+                <li id='android'>Android</li>
+                <li>Windows Phone</li>
+            </ul>
+        </div>
+
+        <div class='inner'>
+            gender:
+            <input class='radiotype' type='radio' name='gender' value='male' />
+            Male
+            <input class='radiotype' type='radio' name='gender' value='female' />
+            Female
+            <br />
+            <br />
+            name:
+            <input type='text' name='name' id='username' value='abcde' />
+        </div>
+    </div>
+    <div id='btnList'>
+        <div><button id='btn01'>查找#tp節點</button></div>
+        <div><button id='btn02'>查找所有li節點</button></div>
+        <div><button id='btn03'>查找name=gender的所有節點</button></div>
+        <div><button id='btn04'>查找#city下所有li節點</button></div>
+        <div><button id='btn05'>返回#city的所有子節點</button></div>
+        <div><button id='btn06'>返回#phone的第一個子節點</button></div>
+        <div><button id='btn07'>返回#tp的父節點</button></div>
+        <div><button id='btn08'>返回android的前一個兄弟節點</button></div>
+        <div><button id='btn09'>返回#username的value屬性值</button></div>
+        <div><button id='btn10'>設置#username的value屬性值</button></div>
+        <div><button id='btn11'>返回#tp的文本值</button></div>
+    </div>
+</body>
+
+</html>

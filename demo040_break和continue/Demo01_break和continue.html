@@ -22,11 +22,11 @@
 
         // for (var i = 0; i < 5; i++) {
         //     document.write('外層循環' + i);
-        //     document.write('</br>');
+        //     document.write('<br/>');
         //     for (var j = 0; j < 5; j++) {
         //         break;
         //         document.write('&ensp;內層循環' + j);
-        //         document.write('</br>');
+        //         document.write('<br/>');
         //     }
         // }
 
@@ -40,11 +40,11 @@
         outer:
         for (var i = 0; i < 5; i++) {
             document.write('外層循環' + i);
-            document.write('</br>');
+            document.write('<br/>');
             for (var j = 0; j < 5; j++) {
                 break outer;
                 document.write('&ensp;內層循環' + j);
-                document.write('</br>');
+                document.write('<br/>');
             }
         }
 
@@ -63,13 +63,13 @@
 
         // for (var i = 0; i < 5; i++) {
         //     document.write('外層循環' + i);
-        //     document.write('</br>');
+        //     document.write('<br/>');
         //     for (var j = 0; j < 5; j++) {
         //         if (j == 1) {
         //             continue;
         //         }
         //         document.write('&ensp;內層循環' + j);
-        //         document.write('</br>');
+        //         document.write('<br/>');
         //     }
         // }
 
@@ -78,13 +78,13 @@
         outer:
         for (var i = 0; i < 5; i++) {
             document.write('外層循環' + i);
-            document.write('</br>');
+            document.write('<br/>');
             for (var j = 0; j < 5; j++) {
                 if (j == 1) {
                     continue outer;
                 }
                 document.write('&ensp;內層循環' + j);
-                document.write('</br>');
+                document.write('<br/>');
             }
         }
     </script>

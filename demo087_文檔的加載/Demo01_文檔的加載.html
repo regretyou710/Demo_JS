@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>文檔的加載</title>
+    <script>
+        /*
+         - 瀏覽器在加載一個頁面時，是按照由上而下的順序加載的，讀取到一行就運行一行，
+           如果將script標籤寫到head標籤中，在代碼執行時頁面還沒加載，頁面沒有加載DOM對象也沒有加載，
+           會導致無法獲取到DOM對象
+         - 將JS代碼編寫在head標籤以下就是為了可以在頁面加載完畢以後再執行JS代碼
+        */
+
+        /*
+          //獲取id為btn的按鈕
+          var btn = document.getElementById('btn');
+        
+         //為按鈕綁定一個單擊響應函數
+          btn.onclick = function () {
+             alert('hello');
+          }
+        */
+
+
+        /*
+         - 如果希望在頁面加載完成前就可以使用，那麼可以利用onload事件來操作
+         - onload事件會在整個頁面加載完成之後才觸發
+         - 為window綁定一個onload事件，該事件對應的響應函數將會在頁面加載完成後執行，
+           這樣可以確保代碼執行時所有的DOM對象已經加載完畢
+        */
+        window.onload = function () {
+            //獲取id為btn的按鈕
+            var btn = document.getElementById('btn');
+
+            //為按鈕綁定一個單擊響應函數
+            btn.onclick = function () {
+                alert('hello');
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <button id='btn'>點我一下</button>
+</body>
+
+</html>
