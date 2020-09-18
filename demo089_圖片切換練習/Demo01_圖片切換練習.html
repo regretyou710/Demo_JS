@@ -5,15 +5,93 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>圖片切換練習</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #outer {
+            width: 500px;
+            margin: 50px auto;
+            padding: 10px;
+            background-color: yellowgreen;
+            text-align: center;
+            /*設置文本置中*/
+        }
+    </style>
     <script>
-       /*
-        
-       */
+        window.onload = function () {
+            //切換圖片就是要修改img標籤的src屬性            
+            //獲取兩個按鈕
+            var prev = document.getElementById('prev');
+            var next = document.getElementById('next');
+
+            //獲取img標籤
+            var img = document.getElementsByTagName('img')[0];
+
+            //建立一個陣列用來存放圖片
+            var imgArr = ['img/圖片切換練習img1.jpg', 'img/圖片切換練習img2.jpg', 'img/圖片切換練習img3.jpg', 'img/圖片切換練習img4.jpg',
+                'img/圖片切換練習img5.jpg',
+            ];
+
+            //創建一個變量用來儲存檔前正在顯示的圖片索引
+            var index = 0;
+
+            //設置提示文字
+            //因為此處訊息是瀏覽器一執行就設置，所以張數不會改變
+            var info = document.getElementById('info');
+            info.innerHTML = '一共張' + imgArr.length + '照片，當前第' + (index + 1) + '張';
+
+
+            prev.onclick = function () {
+                //切換到上一張，索引自減
+                index--;
+
+                //判斷index是否小於0
+                if (index < 0) {
+                    //index = 0;
+
+                    //讓圖片循環
+                    index = imgArr.length - 1;
+                }
+                img.src = imgArr[index];
+
+                //當點擊按鈕後，重新設置訊息(重新賦值給p標籤的innerHTML屬性)
+                info.innerHTML = '一共張' + imgArr.length + '照片，當前第' + (index + 1) + '張';
+            };
+
+
+            next.onclick = function () {
+                //切換到下一張，索引自增
+                index++;
+
+                //判斷index是否大於索引最大值
+                if (index > imgArr.length - 1) {
+                    //index = imgArr.length-1;
+
+                    //讓圖片循環
+                    index = 0;
+                }
+
+                img.src = imgArr[index];
+
+                //當點擊按鈕後，重新設置訊息(重新賦值給p標籤的innerHTML屬性)
+                info.innerHTML = '一共張' + imgArr.length + '照片，當前第' + (index + 1) + '張';
+            };
+        };
     </script>
 </head>
 
 <body>
+    <div id='outer'>
+        <p id='info'></p>
+        <img src='img/圖片切換練習img1.jpg' />
+        <br />
+        <button id='prev'>上一張</button>
+        <button id='next'>下一張</button>
 
+    </div>
 </body>
 
 </html>
