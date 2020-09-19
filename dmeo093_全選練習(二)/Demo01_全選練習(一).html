@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>全選練習(一)</title>
+    <script>
+        window.onload = function () {
+            //獲取四個多選框items
+            var items = document.getElementsByName('items');
+
+
+            /*
+             全選按鈕
+             - 點擊按鈕以後，四個多選框全都被選中
+            */
+            //1.#checkedAllBtn
+            //為id為checkedAllBtn的按鈕綁定一個單擊響應函數
+            var checkedAllBtn = document.getElementById('checkedAllBtn');
+            checkedAllBtn.onclick = function () {
+                //設置四個多選框變成選中狀態
+                for (var i = 0; i < items.length; i++) {
+                    //透過多選框的checked屬性可以來獲取或設置多選框的選中狀態
+                    items[i].checked = true;
+                }
+            };
+
+
+            /*
+             全不選按鈕
+             - 點擊按鈕以後，四個多選框全都變成沒被選中
+            */
+            //2.#checkedNoBtn
+            //為id為checkedNoBtn的按鈕綁定一個單擊響應函數
+            var checkedNoBtn = document.getElementById('checkedNoBtn');
+            checkedNoBtn.onclick = function () {
+                //將四個多選框設置為沒選中狀態
+                for (var i = 0; i < items.length; i++) {
+                    items[i].checked = false;
+                }
+            };
+
+
+            /*
+             反選按鈕
+             - 點擊按鈕以後，選中的變成沒選中，沒選中的變成選中
+            */
+            //3.#checkedRevBtn
+            var checkedRevBtn = document.getElementById('checkedRevBtn');
+            checkedRevBtn.onclick = function () {
+                for (var i = 0; i < items.length; i++) {
+                    //判斷多選框狀態
+                    // if (items[i].checked) {
+                    //     items[i].checked = false;
+                    // }else{
+                    //     items[i].checked = true;
+                    // }
+                    items[i].checked = !items[i].checked;
+                }
+            };
+
+
+            /*
+             提交按鈕
+             - 點擊按鈕以後，將所有選中的多選框的value屬性值彈出
+            */
+            //4.#sendBtn
+            var sendBtn = document.getElementById('sendBtn');
+            sendBtn.onclick = function () {
+                for (var i = 0; i < items.length; i++) {
+                    if (items[i].checked) {
+                        alert(items[i].value);
+                    }
+                }
+            };
+
+
+            /*
+             全選/全不選 多選框
+             - 當它選中時其餘的也選中，當它取消時其餘的也取消
+             - note:在事件的響應函數中，響應函數是給誰綁定的this就是誰
+            */
+            //5.#checkedAllBox
+            var checkedAllBox = document.getElementById('checkedAllBox');
+            checkedAllBox.onclick = function () {
+                //alert(this === checkedAllBox);// treu
+
+                for (var i = 0; i < items.length; i++) {
+                    //items[i].checked = checkedAllBox.checked;
+                    items[i].checked = this.checked;
+                }
+            };
+        };
+
+        /*
+         6.items
+	   */
+    </script>
+</head>
+
+<body>
+    <form method="post" action="">
+        你愛好的運動是?<input type="checkbox" id="checkedAllBox" />全選/全不選
+        <br />
+        <input type="checkbox" name="items" value="足球" />足球
+        <input type="checkbox" name="items" value="籃球" />籃球
+        <input type="checkbox" name="items" value="羽毛球" />羽毛球
+        <input type="checkbox" name="items" value="乒乓球" />乒乓球
+        <br />
+        <input type="button" id="checkedAllBtn" value="全  選" />
+        <input type="button" id="checkedNoBtn" value="全不選" />
+        <input type="button" id="checkedRevBtn" value="反  選" />
+        <input type="button" id="sendBtn" value="提  交" />
+    </form>
+</body>
+
+</html>
