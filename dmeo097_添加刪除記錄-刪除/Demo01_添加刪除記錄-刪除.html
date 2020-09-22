@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>添加刪除記錄-刪除</title>
+    <script>
+        /*
+	     點擊超連結後，刪除一個員工訊息
+	    */
+        window.onload = function () {
+            //獲取所有超連結
+            var allA = document.getElementsByTagName('a');
+
+            for (var i = 0; i < allA.length; i++) {
+                allA[i].onclick = function () {
+                    //點擊超連結後需要刪除超連結所在的那橫列
+                    //使用this來操作刪除超連結，這裡點擊哪個超連結this就是誰
+                    //alert(this);
+
+                    //獲取當前tr
+                    var tr = this.parentNode.parentNode;
+
+                    //每個tr標籤對象(父元素節點)身上都有4個td標籤對象(子元素節點)
+                    //透過tr獲取第一個td元素節點的文本內容
+                    var name = tr.getElementsByTagName('td')[0].innerHTML;
+                    //name = tr.children[0].innerHTML;
+
+                    //刪除之前彈出一個提示框                        
+                    if (confirm('確定要刪除' + name + '嗎?')) {
+                        //刪除tr
+                        tr.parentNode.removeChild(tr);
+                    }
+                    /*
+                     - 點擊超連結以後，超連結會跳轉頁面，這是超連結的默認行為
+                       ，如果不希望出現默認行為可以透過在響應函數的最後return false取消默認行為或是將超連結的href屬性設置為javascript:;
+                    */
+                    return false;
+                };
+            }
+        };
+    </script>
+</head>
+
+<body>
+    <ul id='a'></ul>
+    <table id="employeeTable" border="1" cellSpacing="0">
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Salary</th>
+            <th>&nbsp;</th>
+        </tr>
+        <tr>
+            <td>Eason</td>
+            <td>eason@abc.com.tw</td>
+            <td>5000</td>
+            <td><a href="javascript:;">Delete</a></td>
+        </tr>
+        <tr>
+            <td>Judy</td>
+            <td>judy@abc.com.tw</td>
+            <td>8000</td>
+            <td><a href="deleteEmp?id=002">Delete</a></td>
+        </tr>
+        <tr>
+            <td>Tom</td>
+            <td>tom@abc.com.tw</td>
+            <td>10000</td>
+            <td><a href="deleteEmp?id=003">Delete</a></td>
+        </tr>
+    </table>
+    <div id="formDiv">
+        <h4>添加新員工</h4>
+        <table border="1" cellSpacing="0">
+            <tr>
+                <td class="word">name: </td>
+                <td class="inp"><input type="text" name="empName" id="empName" /></td>
+            </tr>
+            <tr>
+                <td class="word">salary: </td>
+                <td class="inp"><input type="text" name="email" id="email" /></td>
+            </tr>
+            <tr>
+                <td class="word">salary: </td>
+                <td class="inp"><input type="text" name="salary" id="salary" /></td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center">
+                    <button id="addEmpButton" value="abc">Submit</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+
+</html>
