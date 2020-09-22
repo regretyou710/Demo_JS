@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>添加刪除記錄-添加(二)</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
     <script>
         /*
          將刪除tr的單擊響應函數設為全局作用域函數 
@@ -91,7 +92,7 @@
 
 <body>
     <ul id='a'></ul>
-    <table id="employeeTable" border="1" cellSpacing="0">
+    <table id="employeeTable">
         <tr>
             <th>Name</th>
             <th>Email</th>
@@ -119,7 +120,7 @@
     </table>
     <div id="formDiv">
         <h4>添加新員工</h4>
-        <table border="1" cellSpacing="0">
+        <table>
             <tr>
                 <td class="word">name: </td>
                 <td class="inp"><input type="text" name="empName" id="empName" /></td>
