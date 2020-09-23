@@ -80,7 +80,8 @@
         */
         function getStyle(obj, name) {
             /*
-            函數對象
+             - 在函數中，不是用var聲明關鍵字的變量都會成為全局變量。
+
              對於IE8而言getComputedStyle這個方法在window對象中是不存在的，所以
              在判斷getComputedStyle時如果條件只寫getComputedStyle，IE8只會把它
              當作是一個變量，會因為在函數作用域中找不到變量往上一級的全局作用域尋找
@@ -91,9 +92,6 @@
              為了不讓IE8因為為定義變量而報錯導致後面代碼不執行，所以用window.getComputedStyle
              來判斷。
              
-            - 在函數中，不是用var聲明關鍵字的變量都會成為全局變量。
-
-
              window.getComputedStyle和getComputedStyle判斷差別在於:
              IE8將window.getComputedStyle看作是window身上的方法(屬性)，會明確返回undefined
              而IE8將getComputedStyle看作是window身上的變量，會報undefined的錯誤。
