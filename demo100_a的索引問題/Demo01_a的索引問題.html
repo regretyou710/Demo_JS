@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>a的索引問題</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script>
+        /*
+	     點擊超連結後，刪除一個員工訊息
+	    */
+        window.onload = function () {
+            //獲取所有超連結
+            var allA = document.getElementsByTagName('a');
+
+            //為每個超連結綁定單擊響應函數
+            for (var i = 0; i < allA.length; i++) {
+                /*
+                 for循環會在頁面加載完成後立即執行，而響應函數會在超連結被點擊後才執行
+                 ，當響應函數執行時，for循環早已執行完畢，所以在單擊響應函數中使用allA[i]
+                  都會是allA[3]的對象
+                */
+                alert('for循環正在執行' + i);
+
+                allA[i].onclick = function () {
+                    alert('響應函數正在執行' + i);
+                    //alert(allA[i] == this); // false
+                    return false;
+                };
+            }
+        };
+    </script>
+</head>
+
+<body>
+    <ul id='a'></ul>
+    <table id="employeeTable">
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Salary</th>
+            <th>&nbsp;</th>
+        </tr>
+        <tr>
+            <td>Eason</td>
+            <td>eason@abc.com.tw</td>
+            <td>5000</td>
+            <td><a href="javascript:;">Delete</a></td>
+        </tr>
+        <tr>
+            <td>Judy</td>
+            <td>judy@abc.com.tw</td>
+            <td>8000</td>
+            <td><a href="deleteEmp?id=002">Delete</a></td>
+        </tr>
+        <tr>
+            <td>Tom</td>
+            <td>tom@abc.com.tw</td>
+            <td>10000</td>
+            <td><a href="deleteEmp?id=003">Delete</a></td>
+        </tr>
+    </table>
+    <div id="formDiv">
+        <h4>添加新員工</h4>
+        <table>
+            <tr>
+                <td class="word">name: </td>
+                <td class="inp"><input type="text" name="empName" id="empName" /></td>
+            </tr>
+            <tr>
+                <td class="word">email: </td>
+                <td class="inp"><input type="text" name="email" id="email" /></td>
+            </tr>
+            <tr>
+                <td class="word">salary: </td>
+                <td class="inp"><input type="text" name="salary" id="salary" /></td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center">
+                    <button id="addEmpButton">Submit</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+
+</html>

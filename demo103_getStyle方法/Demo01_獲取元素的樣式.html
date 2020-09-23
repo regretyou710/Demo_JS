@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>獲取元素的樣式</title>
+    <style>
+        #box1 {
+            width: 100px;
+            height: 100px;
+            background-color: yellow;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            /*
+             點擊按鈕以後修改box1的大小 
+            */
+            //獲取box1
+            var box1 = document.getElementById('box1');
+
+            //為按鈕綁定單擊響應函數
+            var btn01 = document.getElementById('btn01');
+            btn01.onclick = function () {
+                /*
+                 獲取元素的當前顯示樣式
+                 語法:元素.currentStyle.樣式名
+                 它可以用來讀取當前元素正在顯示的樣式
+
+                 - 如果當前元素沒有設置該樣式，則獲取它的默認值
+                 - style樣式跟style屬性誰生效就獲取誰，style屬性的優先高於style樣式
+                 - currentStyle只有IE瀏覽器支持，其他的瀏覽器都不支持
+                */
+                //alert(box1.currentStyle.width);
+
+
+                /*
+                 在其他瀏覽器中可以使用getComputedStyle()這個方法來獲取元素當前的樣式
+                 ，這個方法是window的方法，可以直接使用
+                 需要兩個參數
+                   - 第一個：要獲取樣式的元素
+                   - 第二個：可以傳遞一個偽元素，一般都傳null
+
+                 該方法會返回一個對象，對象中封裝了當前元素對應的樣式，可以通過對象.樣式名來讀取樣式
+                 如果獲取的樣式沒有設置，則會獲取到真實的值，而不是默認值
+                 比如：沒有設置width，它不會獲取到auto，而是一個長度
+                 - note:但是該方法不支持IE8及以下的瀏覽器                 
+                */
+                //var obj = getComputedStyle(box1, null);
+                // alert(obj.width);
+
+                //正常瀏覽器的方式
+                //alert(getComputedStyle(box1,null).backgroundColor);
+
+                //IE8的方式
+                //alert(box1.currentStyle.backgroundColor);
+
+
+                //通過currentStyle和getComputedStyle()讀取到的樣式都是只讀的，不能修改，如果要修改必須通過style屬性
+                //box1.currentStyle.width = "200px";
+                //alert(box1.currentStyle.backgroundColor);
+
+
+                var w = getStyle(box1, 'width');
+                alert(w);
+            };
+        };
+
+
+        /*
+         為了解決不同瀏覽器需使用不同方式獲取樣式，自定義一個函數，用來獲取指定元素的當前的樣式
+         參數：
+           obj 要獲取樣式的元素
+           name 要獲取的樣式名
+
+           當要獲取的樣式名是使用變量時語法為
+           1. 元素.currentStyle[樣式名變量];
+           2. getComputedStyle(元素, null)[樣式名變量];
+        */
+        function getStyle(obj, name) {
+            /*
+            函數對象
+             對於IE8而言getComputedStyle這個方法在window對象中是不存在的，所以
+             在判斷getComputedStyle時如果條件只寫getComputedStyle，IE8只會把它
+             當作是一個變量，會因為在函數作用域中找不到變量往上一級的全局作用域尋找
+             ，但在全局作用域中也找不到該變量則因為定義變量而報錯
+             (Uncaught ReferenceError: a is not defined)。一旦報錯判斷條件
+             後面的代碼就都不會執行。getComputedStyle本身就是window對象(全局作用域)
+             身上的一個方法，所以window.getComputedStyle和getComputedStyle對IE8以上是相同的
+             為了不讓IE8因為為定義變量而報錯導致後面代碼不執行，所以用window.getComputedStyle
+             來判斷。
+             
+            - 在函數中，不是用var聲明關鍵字的變量都會成為全局變量。
+
+
+             window.getComputedStyle和getComputedStyle判斷差別在於:
+             IE8將window.getComputedStyle看作是window身上的方法(屬性)，會明確返回undefined
+             而IE8將getComputedStyle看作是window身上的變量，會報undefined的錯誤。
+
+             undefined轉布爾會是false。
+            */
+
+            if (window.getComputedStyle) {
+                //正常瀏覽器的方式，具有getComputedStyle()方法
+                return getComputedStyle(obj, null)[name];
+            } else {
+                //IE8的方式，沒有getComputedStyle()方法
+                return obj.currentStyle[name];
+            }
+
+            //return window.getComputedStyle?getComputedStyle(obj , null)[name]:obj.currentStyle[name];
+        };
+    </script>
+</head>
+
+<body>
+    <button id="btn01">點擊</button>
+    <div id="box1" style="width: 300px;"></div>
+</body>
+
+</html>

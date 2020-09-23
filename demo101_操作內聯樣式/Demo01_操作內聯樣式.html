@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>操作內聯樣式</title>
+    <style>
+        #box1 {
+            width: 200px;
+            height: 200px;
+            background-color: red !important;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            /*
+             點擊按鈕以後修改box1的大小 
+            */
+            //獲取box1
+            var box1 = document.getElementById('box1');
+
+            //為按鈕綁定單擊響應函數
+            var btn01 = document.getElementById('btn01');
+            btn01.onclick = function () {
+                //修改box1的寬度
+                /*
+                 透過JS修改元素的樣式
+                 語法:元素.style.樣式名=樣式值
+
+                 note:如果CSS的樣式名中含有-
+                      這種名稱在JS中是不合法的，例如:background-color
+                      需要將這種樣式名去掉-修改為駝峰命名法
+                 
+                 我們透過style屬性設置的樣式都是內聯樣式，
+                 而內聯樣式有較高的優先級，所以透過JS修改的樣式往往會立即顯示
+                 但是如果在樣式中寫了!important，此時樣式會有最高的優先級，
+                 即使透過JS也不能覆蓋該樣式，此時將會導致JS修改樣式失效，所以
+                 盡量不要為樣式添加!important
+                */
+                box1.style.width = '300px';
+                box1.style.height = '300px';
+                box1.style.backgroundColor = 'yellow';
+            };
+
+
+            //點擊按鈕2後，讀取元素的樣式
+            var btn02 = document.getElementById('btn02');
+            btn02.onclick = function () {
+                //讀取box1的樣式
+                /*
+                 語法:元素.style.樣式名
+
+                 note:透過style屬性設置和讀取都是內聯樣式，無法讀取樣式表中的樣式
+                */
+                alert(box1.style.width);
+            };
+        };
+    </script>
+</head>
+
+<body>
+    <button id="btn01">修改box1樣式</button>
+    <button id="btn02">讀取box1樣式</button>
+    <div id="box1"></div>
+</body>
+
+</html>
