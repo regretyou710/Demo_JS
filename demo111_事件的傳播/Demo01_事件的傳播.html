@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>事件的傳播</title>
+    <style type="text/css">
+        #box1 {
+            width: 300px;
+            height: 300px;
+            background-color: yellowgreen;
+        }
+
+
+        #box2 {
+            width: 200px;
+            height: 200px;
+            background-color: yellow;
+        }
+
+
+        #box3 {
+            width: 150px;
+            height: 150px;
+            background-color: skyblue;
+        }
+    </style>
+
+    <script>
+        window.onload = function () {
+            /*
+             分別為三個div綁定單擊響應函數
+            */
+            var box1 = document.getElementById("box1");
+            var box2 = document.getElementById("box2");
+            var box3 = document.getElementById("box3");
+            /*
+             事件的傳播
+             - 關於事件的傳播網景公司和微軟公司有不同的理解
+             - 微軟公司認為事件應該是由內向外傳播，也就是當事件觸發時，應該先觸發當前元素上的事件，
+               然後再向當前元素的祖先元素上傳播，也就說事件應該在冒泡階段執行。
+             - 網景公司認為事件應該是由外向內傳播的，也就是當前事件觸發時，應該先觸發當前元素的最外層的
+               祖先元素的事件，然後在向內傳播給后代元素
+                 - W3C綜合了兩個公司的方案，將事件傳播分成了三個階段
+                    1.捕獲階段
+                        - 在捕獲階段時從最外層的祖先元素，向目標元素進行事件的捕獲，但是默認此時不會觸發事件
+                    2.目標階段
+                        - 事件捕獲到目標元素，捕獲結束開始在目標元素上觸發事件
+                    3.冒泡階段
+                        - 事件從目標元素向他的祖先元素傳遞，依次觸發祖先元素上的事件
+              
+                    - 如果希望在捕獲階段就觸發事件，可以將addEventListener()的第三個參數設置為true
+                      一般情況下我們不會希望在捕獲階段觸發事件，所以這個參數一般都是false
+              
+                 - IE8及以下的瀏覽器中沒有捕獲階段
+             */
+
+            bind(box1, "click", function () {
+                alert("我是box1的響應函數")
+            });
+
+            bind(box2, "click", function () {
+                alert("我是box2的響應函數")
+            });
+
+            bind(box3, "click", function () {
+                alert("我是box3的響應函數")
+            });
+        };
+
+
+        function bind(obj, eventStr, callback) {
+            if (obj.addEventListener) {
+                //大部分瀏覽器兼容的方式
+                obj.addEventListener(eventStr, callback, true);
+            } else {
+                /*
+                 this是誰由調用方式決定
+                 callback.call(obj)
+                */
+                //IE8及以下
+                obj.attachEvent("on" + eventStr, function () {
+                    //在匿名函數中調用回調函數
+                    callback.call(obj);
+                });
+            }
+        };
+    </script>
+</head>
+
+<body>
+    <div id="box1">
+        1
+        <div id="box2">
+            2
+            <div id="box3">3</div>
+        </div>
+    </div>
+</body>
+
+</html>

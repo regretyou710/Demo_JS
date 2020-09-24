@@ -41,7 +41,12 @@
                         如果設置為false，則元素可用
                     */
                     inputs[0].disabled = false;
-                    inputs[1].disabled = false;
+                    
+                    //當仔細閱讀勾選才能按註冊按鈕
+                    var ckBox = document.getElementById('box');
+                    ckBox.onclick = function(){                        
+                        inputs[1].disabled = !inputs[0].checked;
+                    };
                 }
             };
         };
@@ -164,7 +169,7 @@
     </p>
     <!-- 如果為表單項添加disabled="disabled" 則表單項將變成不可用的狀態 -->
     <!-- disabled在HTML中是一種特殊屬性，布林屬性。diabled的值，會自動轉換為布林值 -->
-    <input type="checkbox" disabled="disabled" />我已仔細閱讀協議，一定遵守
+    <input type="checkbox" disabled="disabled" id='box'/>我已仔細閱讀協議，一定遵守
     <input type="submit" value="註冊" disabled="disabled" />
 </body>
 

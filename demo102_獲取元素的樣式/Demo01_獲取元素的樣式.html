@@ -61,27 +61,26 @@
                 //box1.currentStyle.width = "200px";
                 //alert(box1.currentStyle.backgroundColor);
             };
+        };
 
 
-             /*
-                 為了解決不同瀏覽器需使用不同方式獲取樣式，自定義一個函數，用來獲取指定元素的當前的樣式
-                 參數：
-                   obj 要獲取樣式的元素
-                   name 要獲取的樣式名
+        /*
+         為了解決不同瀏覽器需使用不同方式獲取樣式，自定義一個函數，用來獲取指定元素的當前的樣式
+         參數：
+           obj 要獲取樣式的元素
+           name 要獲取的樣式名
 
-                   當要獲取的樣式名是使用變量時語法為
-                   1. 元素.currentStyle[樣式名變量];
-                   2. getComputedStyle(元素, null)[樣式名變量];
-                */
+           當要獲取的樣式名是使用變量時語法為
+           1. 元素.currentStyle[樣式名變量];
+           2. getComputedStyle(元素, null)[樣式名變量];
+        */
 
-                function getStyle(obj, name) {
-                    //正常瀏覽器的方式，具有getComputedStyle()方法
-                    return getComputedStyle(obj, null)[name];
+        function getStyle(obj, name) {
+            //正常瀏覽器的方式，具有getComputedStyle()方法
+            return getComputedStyle(obj, null)[name];
 
-                    //IE8的方式，沒有getComputedStyle()方法
-                    return obj.currentStyle[name];
-                };
-
+            //IE8的方式，沒有getComputedStyle()方法
+            return obj.currentStyle[name];
         };
     </script>
 </head>

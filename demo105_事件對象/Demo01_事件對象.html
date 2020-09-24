@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>事件對象</title>
+    <style type="text/css">
+        #areaDiv {
+            border: 1px solid black;
+            width: 300px;
+            height: 50px;
+            margin-bottom: 10px;
+        }
+
+        #showMsg {
+            border: 1px solid black;
+            width: 300px;
+            height: 20px;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            /*
+             當滑鼠在areaDiv中移動時，在showMsg中來顯示滑鼠的坐標
+            */
+            //獲取兩個div
+            var areaDiv = document.getElementById("areaDiv");
+            var showMsg = document.getElementById("showMsg");
+
+
+            /*
+             onmousemove
+               - 該事件將會在滑鼠在元素中移動時被觸發
+              
+             事件對象
+               - 當事件的響應函數被觸發時，瀏覽器每次都會將一個事件對象作為實參傳遞進響應函數(不定義形參也會傳實參，定義形參只是方便使用)，
+                 在事件對象中封裝了當前事件相關的一切信息，比如:滑鼠的坐標、鍵盤哪個按鍵被按下
+                 、滑鼠滾輪滾動的方向...
+            */
+            areaDiv.onmousemove = function (event) {
+                //event相當於瀏覽器隱含傳遞的arguments[0]
+                //參考 demo074_arguments/Demo01_arguments.html
+                //console.log(arguments[0]);
+                //console.log(event);
+                //console.log(arguments[0] == event);
+
+
+                /*
+                 在IE8中，響應函數被觸發時，瀏覽器不會傳遞事件對象(根本就沒傳實參)，
+                 在IE8及以下的瀏覽器中，是將事件對象作為window對象的屬性保存的
+
+                 定義形參就相當於在函數作用域中聲明了變量
+                 function(event){
+                   //var event;// event有被宣告只是未賦值
+                   //參考 demo054_函數作用域\Demo01_函數作用域.html
+                 };
+                 所以在IE8及以下輸出event是回傳undefined而不是報undefined錯誤
+                 那麼要在IE8及以下使用event實參則是從全局作用域中的window對象身上呼叫event屬性
+
+                 (找不到event時)undefined轉布爾:為false
+                 (找到event時)對象轉布爾:為true
+                */
+                // if (!event) {
+                //     event = window.event;
+                // }
+                //解決事件對象的兼容性問題
+                event = event || window.event;
+
+
+                /*
+                 clientX可以獲取游標指針的水平坐標
+                 cilentY可以獲取游標指針的垂直坐標
+                */
+                var x = event.clientX;
+                var y = event.clientY;
+                //alert("x = "+x + " , y = "+y);
+
+
+                //在showMsg中顯示游標的坐標
+                showMsg.innerHTML = "x = " + x + " , y = " + y;
+            };
+        };
+    </script>
+</head>
+
+<body>
+    <div id="areaDiv"></div>
+    <div id="showMsg"></div>
+</body>
+
+</html>

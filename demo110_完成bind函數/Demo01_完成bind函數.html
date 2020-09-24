@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>完成bind函數</title>
+    <script>
+        window.onload = function () {
+            {
+                /*
+                 點擊按鈕以後彈出一個內容
+                */
+                //獲取按鈕對象
+                var btn01 = document.getElementById("btn01");
+
+                /*
+                 使用 對象.事件 = 函數 的形式綁定響應函數，
+                 它只能同時為一個元素的一個事件綁定一個響應函數，
+                 不能綁定多個，如果綁定了多個，則後面會覆蓋掉前面的
+                */
+                //為btn01綁定一個單擊響應函數
+                // btn01.onclick = function () {
+                //     alert(1);
+                // };
+
+                //為btn01綁定第二個響應函數
+                // btn01.onclick = function () {
+                //     alert(2);
+                // };
+            }
+
+
+            {
+                /*
+                 addEventListener()
+                 - 通過這個方法也可以為元素綁定響應函數
+                 - 參數：
+                     1. 事件的字串，不要on (onclick->click)
+                     2. 回調函數，當事件觸發時該函數會被調用
+                     3. 是否在捕獲階段觸發事件，需要一個布爾值，一般都傳false
+                  
+                 使用addEventListener()可以同時為一個元素的相同事件同時綁定多個響應函數，
+                 這樣當事件被觸發時，響應函數將會按照函數的綁定順序執行
+                  
+                 這個方法不支持IE8及以下的瀏覽器
+                */
+                /*
+                btn01.addEventListener("click", function () {
+                    alert(1);
+                }, false);
+
+                btn01.addEventListener("click", function () {
+                    alert(2);
+                }, false);
+
+                btn01.addEventListener("click", function () {
+                    alert(3);
+                }, false);
+                */
+
+
+                /*
+                 attachEvent()
+                 - 在IE8中可以使用attachEvent()來綁定事件，只提供IE
+                 - 參數：
+                     1. 事件的字串，要on
+                     2. 回調函數
+                  
+                 - 這個方法也可以同時為一個事件綁定多個處理函數，
+                   不同的是它是後綁定先執行，執行順序和addEventListener()相反
+                */
+                /*
+                btn01.attachEvent("onclick", function () {
+                    alert(1);
+                });
+
+                btn01.attachEvent("onclick", function () {
+                    alert(2);
+                });
+
+                btn01.attachEvent("onclick", function () {
+                    alert(3);
+                });
+                */
+            }
+
+
+            {
+                // btn01.addEventListener("click", function () {
+                //     alert(this); // [object HTMLButtonElement]
+                // }, false);
+
+                // btn01.attachEvent("onclick", function () {
+                //     alert(this);
+                // }); // [object Window]
+
+                bind(btn01, "click", function () {
+                    alert(this);
+                });
+            }
+        };
+
+
+        {
+            //定義一個函數，用來為指定元素綁定響應函數
+            /*
+             addEventListener()中的this，是綁定事件的對象
+             attachEvent()中的this，是window
+             需要統一兩個方法this
+            */
+            /*
+             參數：
+             obj 要綁定事件的對象
+             eventStr 事件的字符串(不要on)
+             callback 回調函數
+            */
+            function bind(obj, eventStr, callback) {
+                /*
+                 判斷obj對象中有無addEventListener對象
+                 如果有返回該對象，Object轉換布林為true
+                 如果沒有返回undefined，undefined轉換布林為false
+                */
+                //alert(obj.addEventListener);
+                if (obj.addEventListener) {
+                    //大部分瀏覽器兼容的方式
+                    obj.addEventListener(eventStr, callback, false);
+                } else {
+                    /*
+                     為了使addEventListener()和attachEvent()的this統一都是返回[object HTMLButtonElement]
+                     (使用call和apply調用時，this是指定的那個對象)
+                     參考 demo073_call和apply\Demo01_call和apply.html
+                     
+                     this是誰由調用方式決定
+                     callback.call(obj)
+
+                     如果是以obj.attachEvent("on" + eventStr, callback);
+                     callback參數是由瀏覽器進行回調，為了不讓瀏覽器操作回調而是由我們來操作回調
+                     所以使用匿名函數:
+                      1. 將callback參數寫在裡面(變成人工去調用callback參數這個函數，不要一上瀏覽器就自動回調)
+                      2. attachEvent()的第二個參數要求傳入一個函數作為實參，所以也必須在匿名函數的方式下
+                         使用callback參數，不然直接以callback.call(obj)IE8會報類型不符的錯誤
+                         var f = callback.call(obj);
+                         console.log(typeof f);// undefined
+                    */
+                    //IE8及以下
+                    obj.attachEvent("on" + eventStr, function () {
+                        //在匿名函數中調用回調函數
+                        callback.call(obj);
+                    });
+                }
+            };
+        }
+    </script>
+</head>
+
+<body>
+    <button id="btn01">點我一下</button>
+</body>
+
+</html>

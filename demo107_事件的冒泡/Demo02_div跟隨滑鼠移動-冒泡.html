@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>div跟隨滑鼠移動-冒泡</title>
+    <style type="text/css">
+        #box1 {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            /*
+             * 開啟box1的絕對定位
+             */
+            position: absolute;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            /*
+             使div可以跟隨游標移動
+            */
+            //獲取box1
+            var box1 = document.getElementById("box1");
+
+            //綁定游標移動事件
+            document.onmousemove = function (event) {
+                //解決兼容問題
+                event = event || window.event;
+
+
+                {
+                    //獲取滾動條滾動的距離
+                    /*
+                     chrome認為瀏覽器的滾動條是body的，可以通過body.scrollTop來獲取
+                     火狐等瀏覽器認為瀏覽器的滾動條是html的
+
+                     獲取body、html標籤參考 demo095_DOM查詢的剩餘方法\Demo01_DOM查詢的剩餘方法.html
+                    */
+                    //var st = document.documentElement.scrollTop;
+                    //var st = document.body.scrollTop
+                    var st = document.body.scrollTop || document.documentElement.scrollTop;
+                    var sl = document.body.scrollLeft || document.documentElement.scrollLeft;
+                }
+
+
+                {
+                    //獲取到游標的坐標
+                    /*
+                     clientX和clientY用於獲取游標在當前的可見窗口的坐標div的偏移量，是相對於整個頁面的
+                     
+                     pageX和pageY可以獲取游標相對於當前頁面的坐標
+                     var left = event.pageX;
+                     var top = event.pageY;
+
+                     但是這個兩個屬性在IE8中不支持，所以如果需要兼容IE8，則不要使用
+                    */
+                    var left = event.clientX;
+                    var top = event.clientY;
+
+
+                    //設置div的偏移量
+                    //#box1需要開啟box1絕對定位才會跟著滑鼠移動
+                    /*
+                     透過JS修改元素的樣式
+                     語法:元素.style.樣式名=樣式值
+
+                     參考 demo102_獲取元素的樣式\Demo01_獲取元素的樣式.html
+                    */
+                    //box1.style.left = left + "px";
+                    //box1.style.top = top + "px";
+
+
+                    //把滾動條的滾動距離加到偏移量，才不會造成滑鼠超過可見視窗時游標與div不在同一點上的情形
+                    box1.style.left = left + sl + "px";
+                    box1.style.top = top + st + "px";
+                }
+            };
+
+
+            //取消事件冒泡後box1就無法進入box2的範圍內
+            var box2 = document.getElementById('box2');
+            box2.onmousemove = function (event) {
+                event = event || window.event;
+                event.cancelBubble = true;
+            };
+        };
+    </script>
+</head>
+
+<body style="height: 1000px;width: 2000px;">
+    <div id="box1"></div>
+    <div id="box2" style="width: 500px; height: 500px; background-color:#bfa;"></div>
+</body>
+
+</html>
