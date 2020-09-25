@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>拖曳(三)</title>
+    <style type="text/css">
+        #box1 {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            position: absolute;
+        }
+
+
+        #box2 {
+            width: 100px;
+            height: 100px;
+            background-color: yellow;
+            position: absolute;
+
+            left: 200px;
+            top: 200px;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            /*
+             拖曳box1元素
+               - 拖曳的流程
+                 1. 當游標在被拖曳元素上按下時，開始拖曳  onmousedown
+                 2. 當游標移動時被拖曳元素跟隨游標移動 onmousemove
+                 3. 當游標鬆開時，被拖曳元素固定在當前位置 onmouseup
+            */
+
+            //獲取box1
+            var box1 = document.getElementById("box1");
+            //為box1綁定一個游標按下事件
+            //當游標在被拖曳元素上按下時，開始拖曳 onmousedown
+            box1.onmousedown = function (event) {
+                console.log('box1:onmousedown');
+
+
+                //設置box1捕獲所有游標按下的事件
+                /*
+                 setCapture()
+                 - 只有IE支持，但是在火狐中調用時不會報錯，而如果使用chrome調用，會報錯
+                */
+                /*if(box1.setCapture){
+                	box1.setCapture();
+                }*/
+                box1.setCapture && box1.setCapture();
+              
+
+                event = event || window.event;
+                //獲取游標座標參考 demo106_div跟隨滑鼠移動\Demo01_div跟隨滑鼠移動.html
+                //div的偏移量 游標.clentX - 元素.offsetLeft
+                //div的偏移量 游標.clentY - 元素.offsetTop
+                var ol = event.clientX - box1.offsetLeft;
+                var ot = event.clientY - box1.offsetTop;
+
+
+                //為document綁定一個onmousemove事件
+                document.onmousemove = function (event) {
+                    console.log('box1:onmousemove');
+                    event = event || window.event;
+                    //當游標移動時被拖曳元素跟隨游標移動 onmousemove
+                    //獲取游標的坐標
+                    var left = event.clientX - ol;
+                    var top = event.clientY - ot;
+
+                    //修改box1的位置
+                    box1.style.left = left + "px";
+                    box1.style.top = top + "px";
+                };
+
+
+                //為document綁定一個游標鬆開事件
+                /*
+                     如果onmouseup綁定在box1身上，當box1與box2重疊且游標在box2身上時，此時會觸發box2的onmouseup，
+                     而box1的onmousemove效果還在，也就是說box1並沒有觸發onmouseup，會換成執行box2的onmouseup
+                     及onmousedown(因為box2在box1的上層)
+
+                     box1的onmouseup、onmousemove、onmousedown都會冒泡給body，然後body會再委派給box2
+                     只是box2沒有設置偏移量所以看不出效果
+
+                     box1拖曳到box2重疊時：                     
+                      - 滑鼠未放開:
+                        box1:onmousemove
+                        box2:onmousemove
+                        body:onmousemove
+
+                      - 滑鼠放開不移動:
+                        box2:onmouseup
+                        body:onmouseup
+
+                      - 滑鼠點擊不移動:
+                        box2:onmousedown
+                        body:onmousedown
+                     
+                     而box1與box2不是父子元素關係而是兄弟元素關係，所以不會有事件的冒泡
+                    */
+                document.onmouseup = function () { //box1.onmouseup = function () {
+                    console.log('box1:onmouseup');
+                    //當游標鬆開時，被拖曳元素固定在當前位置 onmouseup
+                    //取消document的onmousemove事件
+                    document.onmousemove = null;
+
+                    //取消document的onmouseup事件
+                    //因為滑鼠拖曳box1放開後就沒有必要在其他地方作用，所以設置null讓其成為一次性作用
+                    document.onmouseup = null;
+
+                    //(對於IE使用)當游標鬆開時，取消對事件的捕獲
+                    box1.releaseCapture && box1.releaseCapture();                    
+                };
+
+
+                /*
+                 當我們拖拽一個網頁中的內容時，瀏覽器會默認去搜索引擎中搜索內容，
+                 此時會導致拖拽功能的異常，這個是瀏覽器提供的默認行為，
+                 如果不希望發生這個行為，則可以通過return false來取消默認行為
+                  
+                 但是這招對IE8不起作用
+                */
+                return false;
+            };
+
+
+            var box2 = document.getElementById("box2");
+            box2.onmousedown = function () {
+                console.log('box2:onmousedown');
+            };
+
+            box2.onmousemove = function () {
+                console.log('box2:onmousemove');
+            };
+
+            box2.onmouseup = function () {
+                console.log('box2:onmouseup');
+            };
+
+            document.body.onmousedown = function () {
+                console.log('body:onmousedown');
+            };
+
+            document.body.onmousemove = function () {
+                console.log('body:onmousemove');
+            };
+
+            document.body.onmouseup = function () {
+                console.log('body:onmouseup');
+            };
+        };
+    </script>
+</head>
+
+<body>
+    我是一段文字
+    <div id="box1"></div>
+    <div id="box2"></div>
+</body>
+
+</html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>拖曳(三)</title>
+    <style type="text/css">
+        #box1 {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            position: absolute;
+        }
+
+
+        #box2 {
+            width: 100px;
+            height: 100px;
+            background-color: yellow;
+            position: absolute;
+
+            left: 200px;
+            top: 200px;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            /*
+             拖曳box1元素
+               - 拖曳的流程
+                 1. 當游標在被拖曳元素上按下時，開始拖曳  onmousedown
+                 2. 當游標移動時被拖曳元素跟隨游標移動 onmousemove
+                 3. 當游標鬆開時，被拖曳元素固定在當前位置 onmouseup
+            */
+
+            //獲取box1
+            var box1 = document.getElementById("box1");
+            var box2 = document.getElementById("box2");
+            var img1 = document.getElementById("img1");
+
+            //開啟box1的拖曳
+            drag(box1);
+
+            //開啟box2的
+            drag(box2);
+
+            drag(img1);
+
+
+            /*
+             提取一個專門用來設置拖曳的函數
+             參數：開啟拖曳的元素
+            */
+            function drag(obj) {
+                //當游標在被拖曳元素上按下時，開始拖曳 onmousedown
+                obj.onmousedown = function (event) {
+                    //設置box1捕獲所有游標按下的事件
+                    /*
+                     setCapture()
+                     - 只有IE支持，但是在火狐中調用時不會報錯，而如果使用chrome調用，會報錯
+                    */
+                    /*if(box1.setCapture){
+                    	box1.setCapture();
+                    }*/
+                    obj.setCapture && obj.setCapture();
+
+
+                    event = event || window.event;
+                    //獲取游標座標參考 demo106_div跟隨滑鼠移動\Demo01_div跟隨滑鼠移動.html
+                    //div的偏移量 游標.clentX - 元素.offsetLeft
+                    //div的偏移量 游標.clentY - 元素.offsetTop
+                    var ol = event.clientX - obj.offsetLeft;
+                    var ot = event.clientY - obj.offsetTop;
+
+
+                    //為document綁定一個onmousemove事件
+                    document.onmousemove = function (event) {
+                        event = event || window.event;
+                        //當游標移動時被拖曳元素跟隨游標移動 onmousemove
+                        //獲取游標的坐標
+                        var left = event.clientX - ol;
+                        var top = event.clientY - ot;
+
+                        //修改box1的位置
+                        obj.style.left = left + "px";
+                        obj.style.top = top + "px";
+                    };
+
+
+                    //為document綁定一個游標鬆開事件                   
+                    document.onmouseup = function () {
+                        //當游標鬆開時，被拖曳元素固定在當前位置 onmouseup
+                        //取消document的onmousemove事件
+                        document.onmousemove = null;
+
+                        //取消document的onmouseup事件
+                        //因為滑鼠拖曳box1放開後就沒有必要在其他地方作用，所以設置null讓其成為一次性作用
+                        document.onmouseup = null;
+
+                        //(對於IE使用)當游標鬆開時，取消對事件的捕獲
+                        obj.releaseCapture && obj.releaseCapture();
+                    };
+
+
+                    /*
+                     當我們拖曳一個網頁中的內容時，瀏覽器會默認去搜索引擎中搜索內容，
+                     此時會導致拖曳功能的異常，這個是瀏覽器提供的默認行為，
+                     如果不希望發生這個行為，則可以通過return false來取消默認行為
+                      
+                     但是這招對IE8不起作用
+                    */
+                    return false;
+                };
+            };
+        };
+    </script>
+</head>
+
+<body>
+    我是一段文字
+    <div id="box1"></div>
+    <div id="box2"></div>
+    <img src="img/duke1.jpg" id="img1" style="position: absolute;width: 100px;height: 100px;" />
+</body>
+
+</html>

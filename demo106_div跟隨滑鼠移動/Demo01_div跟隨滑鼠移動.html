@@ -25,6 +25,8 @@
             var box1 = document.getElementById("box1");
 
             //綁定游標移動事件
+            //如果onmousemove綁定在box1身上那麼只能在box1的範圍內移動，超出範圍則沒效果
+            //所以綁定在document
             document.onmousemove = function (event) {
                 //解決兼容問題
                 event = event || window.event;
