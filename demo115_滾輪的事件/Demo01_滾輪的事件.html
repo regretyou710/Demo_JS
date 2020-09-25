@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>滾輪的事件</title>
+    <style type="text/css">
+        #box1 {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            //獲取id為box1的div
+            var box1 = document.getElementById("box1");
+
+            //為box1綁定一個鼠標滾輪滾動的事件
+            /*
+             onmousewheel鼠標滾輪滾動的事件，會在滾輪滾動時觸發，
+             但是火狐不支持該屬性
+              
+             在火狐中需要使用 DOMMouseScroll 來綁定滾動事件
+             注意該事件需要通過addEventListener()函數來綁定
+            */
+            box1.onmousewheel = function (event) {
+                event = event || window.event;
+                /*
+                 當鼠標滾輪向下滾動時，box1變長
+                 當滾輪向上滾動時，box1變短
+                */
+
+                /*
+                 event.wheelDelta 可以獲取鼠標滾輪滾動的方向
+                 向上滾 120   向下滾 -120
+                 wheelDelta這個值我們不看大小，只看正負
+                */
+                //alert(event.wheelDelta);
+
+
+                /*	
+                 wheelDelta這個屬性火狐中不支持
+                 在火狐中使用event.detail來獲取滾動的方向
+                 向上滾 -3  向下滾 3
+                */
+                //alert(event.detail);
+
+
+                //判斷鼠標滾輪滾動的方向                
+                if (event.wheelDelta > 0 || event.detail < 0) {
+                    //向上滾，box1變短
+                    box1.style.height = box1.clientHeight - 10 + "px";
+                } else {
+                    //向下滾，box1變長
+                    box1.style.height = box1.clientHeight + 10 + "px";
+                }
+
+
+                {
+                    /*
+                     使用addEventListener()方法綁定響應函數，取消默認行為時不能使用return false
+                     需要使用event來取消默認行為event.preventDefault();
+                     但是IE8不支持event.preventDefault();這個玩意，如果直接調用會報錯
+                    */
+                    event.preventDefault && event.preventDefault();
+
+                    /*
+                     當滾輪滾動時，如果瀏覽器有滾動條，滾動條會隨之滾動，
+                     這是瀏覽器的默認行為，如果不希望發生，則可以取消默認行為
+                    */
+                    return false;
+                }
+            };
+
+
+            //為火狐綁定滾輪事件
+            /*
+             火狐以外的瀏覽器:
+              box1.onmousewheel = function () {
+               alert('滾輪滾動');
+              };
+
+             火狐:
+             bind(box1, "DOMMouseScroll",function(){
+               alert('滾輪滾動');
+             });
+
+             兩個函數都是做相同的內容動作，所以沒必要分別進行             
+             --> 改寫一:
+                 fun = function () {
+                  alert('滾輪滾動');
+                 };
+                 box1.onmousewheel = fun;
+                 bind(box1, "DOMMouseScroll", fun);                 
+             --> 改寫二:
+                 box1.onmousewheel = function () {
+                  alert('滾輪滾動');
+                 };
+                 bind(box1, "DOMMouseScroll", box1.onmousewheel);
+            */
+            bind(box1, "DOMMouseScroll", box1.onmousewheel);
+        };
+
+
+        function bind(obj, eventStr, callback) {
+            if (obj.addEventListener) {
+                //大部分瀏覽器兼容的方式
+                obj.addEventListener(eventStr, callback, false);
+            } else {
+                /*
+                 this是誰由調用方式決定
+                 callback.call(obj)
+                */
+                //IE8及以下
+                obj.attachEvent("on" + eventStr, function () {
+                    //在匿名函數中調用回調函數
+                    callback.call(obj);
+                });
+            }
+        };
+    </script>
+</head>
+
+<body style="height: 2000px;">
+    <div id="box1"></div>
+</body>
+
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>鍵盤的移動</title>
+    <style>
+        #box1 {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            position: absolute;
+        }
+    </style>
+    <script>
+        //使div可以根據不同的方向鍵向不同的方向移動
+        /*
+         按左键，div向左移
+         按右键，div向右移
+         ...        
+        */
+        window.onload = function () {
+            document.onkeydown = function (event) {
+                event = event || window.event;
+
+                //定義一個變量，來表示移動的速度
+                var speed = 10;
+
+                //當用戶按了ctrl以後，速度加快
+                if (event.ctrlKey) {
+                    speed = 500;
+                }
+
+                /*
+                 37 左
+                 38 上
+                 39 右
+                 40 下
+                 */
+                switch (event.keyCode) {
+                    case 37:
+                        //alert("向左"); left值減小
+                        box1.style.left = box1.offsetLeft - speed + "px";
+                        break;
+                    case 39:
+                        //alert("向右");
+                        box1.style.left = box1.offsetLeft + speed + "px";
+                        break;
+                    case 38:
+                        //alert("向上");
+                        box1.style.top = box1.offsetTop - speed + "px";
+                        break;
+                    case 40:
+                        //alert("向下");
+                        box1.style.top = box1.offsetTop + speed + "px";
+                        break;
+                }
+            };
+        };
+    </script>
+</head>
+
+<body>
+    <div id="box1"></div>
+</body>
+
+</html>
