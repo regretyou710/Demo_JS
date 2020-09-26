@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>定時與延時</title>
+    <script>
+        window.onload = function () {
+            var t1 = 5;
+            var count = document.getElementById('count');
+            var interval = setInterval(function () {
+                count.innerHTML = t1--;
+                console.log('定時t1:' + t1);
+
+                if (t1 == 0) {
+                    clearInterval(interval);
+                }
+            }, 1000);
+
+
+            //倒數5秒後執行延時調用
+            var timeout = setTimeout(function () {
+                alert('視窗關閉');
+
+                if (t1 == 0) {
+                    console.log('延時t1:' + t1);
+                    clearTimeout(timeout);
+                }
+            }, 5000);
+        };
+    </script>
+</head>
+
+<body>
+    <h1 id="count"></h1>
+</body>
+
+</html>
