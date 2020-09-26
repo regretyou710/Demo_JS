@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>切換圖片練習</title>
+    <script>
+        window.onload = function () {
+            /*
+             使圖片可以自動切換
+            */
+            //獲取img標簽
+            var img1 = document.getElementById('img1');
+
+            //創建一個數組來保存圖片的路徑
+            var imgArr = ['img/1.jpg', 'img/2.jpg', 'img/3.jpg', 'img/4.jpg', 'img/5.jpg'];
+
+            //創建一個變量，用來保存當前圖片的索引
+            var index = 0;
+
+            //定義一個變量，用來保存定時器的標識
+            var timer;
+
+            //為btn01綁定一個單擊響應函數
+            var btn01 = document.getElementById('btn01');
+            btn01.onclick = function () {
+                /*
+                 目前，我們每點擊一次按鈕，就會開啟一個定時器，點擊多次就會開啟多個定時器，
+                 這就導致圖片的切換速度過快，並且我們只能關閉最後一次開啟的定時器 
+                 所以在開啟定時器之前，需要將當前元素上的其他定時器關閉            
+                */
+                clearInterval(timer);
+
+
+                /*
+                 開啟一個定時器，來自動切換圖片
+                */
+                timer = setInterval(function () {
+                    //使索引自增
+                    index++;
+
+
+                    //判斷索引是否超過最大索引
+                    //方式一:
+                    // if (index >= imgArr.length) {
+                    //     //則將index設置為0
+                    //     index = 0;
+                    // }
+                    //方式二:index = index % imgArr.length;
+                    index %= imgArr.length;
+
+
+                    //修改img1的src屬性
+                    img1.src = imgArr[index];
+                }, 1000);
+
+
+                //為btn02綁定一個單擊響應函數
+                var btn02 = document.getElementById("btn02");
+                btn02.onclick = function () {
+                    //點擊按鈕以後，停止圖片的自動切換，關閉定時器
+                    /*
+					 一般而言windown.onload一調用，timer變數會因為沒有賦值而返回undefined
+                     ，但clearInterval()可以接收任意參數
+					 如果參數是一個有效的定時器的標識，則停止對應的定時器
+					 如果參數不是一個有效的標識，則什麼也不做
+					*/
+                    clearInterval(timer);
+                };
+            };
+        };
+    </script>
+</head>
+
+<body>
+    <img id="img1" src="img/1.jpg" />
+    <br /><br />
+    <button id="btn01">開始</button>
+    <button id="btn02">停止</button>
+</body>
+
+</html>

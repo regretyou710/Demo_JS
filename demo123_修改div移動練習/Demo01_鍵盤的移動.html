@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>鍵盤的移動</title>
+    <style>
+        #box1 {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            position: absolute;
+        }
+    </style>
+    <script>
+        //使div可以根據不同的方向鍵向不同的方向移動
+        /*
+         按左键，div向左移
+         按右键，div向右移
+         ...        
+        */
+        window.onload = function () {
+            {
+                //定義一個變量，來表示移動的速度
+                var speed = 10;
+
+
+                //創建一個變量表示方向
+                //通過修改dir來影響移動的方向
+                var dir = 0;
+
+
+                //開啟一個定時器，來控制div的移動
+                setInterval(function () {
+                    /*
+                     37 左
+                     38 上
+                     39 右
+                     40 下
+                    */
+                    switch (dir) {
+                        case 37:
+                            //alert("向左"); left值減小
+                            box1.style.left = box1.offsetLeft - speed + "px";
+                            break;
+                        case 39:
+                            //alert("向右");
+                            box1.style.left = box1.offsetLeft + speed + "px";
+                            break;
+                        case 38:
+                            //alert("向上");
+                            box1.style.top = box1.offsetTop - speed + "px";
+                            break;
+                        case 40:
+                            //alert("向下");
+                            box1.style.top = box1.offsetTop + speed + "px";
+                            break;
+                    }
+                }, 30);
+            }
+
+
+            {
+                document.onkeydown = function (event) {
+                    event = event || window.event;
+
+
+                    //當用戶按了ctrl以後，速度加快
+                    if (event.ctrlKey) {
+                        speed = 500;
+                    } else {
+                        speed = 10;
+                    }
+
+
+                    //使dir等於按鍵的值
+                    dir = event.keyCode;
+                };
+
+
+                //當按鍵鬆開時，div不再移動
+                document.onkeyup = function () {
+                    //設置方向為0
+                    dir = 0;
+                };
+            }
+        };
+    </script>
+</head>
+
+<body>
+    <div id="box1"></div>
+</body>
+
+</html>
