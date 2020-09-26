@@ -60,9 +60,11 @@
                      setCapture()
                      - 只有IE支持，但是在火狐中調用時不會報錯，而如果使用chrome調用，會報錯
                     */
-                    /*if(box1.setCapture){
-                    	box1.setCapture();
-                    }*/
+                    /*
+                     if (box1.setCapture) {
+                         box1.setCapture();
+                     }
+                    */
                     obj.setCapture && obj.setCapture();
 
 
@@ -77,10 +79,13 @@
                     //為document綁定一個onmousemove事件
                     document.onmousemove = function (event) {
                         event = event || window.event;
+
+                        
                         //當游標移動時被拖曳元素跟隨游標移動 onmousemove
                         //獲取游標的坐標
                         var left = event.clientX - ol;
                         var top = event.clientY - ot;
+
 
                         //修改box1的位置
                         obj.style.left = left + "px";
@@ -94,9 +99,11 @@
                         //取消document的onmousemove事件
                         document.onmousemove = null;
 
+
                         //取消document的onmouseup事件
                         //因為滑鼠拖曳box1放開後就沒有必要在其他地方作用，所以設置null讓其成為一次性作用
                         document.onmouseup = null;
+
 
                         //(對於IE使用)當游標鬆開時，取消對事件的捕獲
                         obj.releaseCapture && obj.releaseCapture();

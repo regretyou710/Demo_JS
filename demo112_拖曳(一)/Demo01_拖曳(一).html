@@ -36,6 +36,7 @@
 
             //獲取box1
             var box1 = document.getElementById("box1");
+            
             //為box1綁定一個游標按下事件
             //當游標在被拖曳元素上按下時，開始拖曳 onmousedown
             box1.onmousedown = function () {
@@ -46,10 +47,13 @@
                 document.onmousemove = function (event) {
                     console.log('box1:onmousemove');
                     event = event || window.event;
+
+
                     //當游標移動時被拖曳元素跟隨游標移動 onmousemove
                     //獲取游標的坐標
                     var left = event.clientX;
                     var top = event.clientY;
+
 
                     //修改box1的位置
                     box1.style.left = left + "px";
@@ -84,12 +88,16 @@
                     */
                 document.onmouseup = function () { //box1.onmouseup = function () {
                     console.log('box1:onmouseup');
+
+
                     //當游標鬆開時，被拖曳元素固定在當前位置 onmouseup
                     //取消document的onmousemove事件
                     document.onmousemove = null;
 
+
                     //取消document的onmouseup事件
                     //因為滑鼠拖曳box1放開後就沒有必要在其他地方作用，所以設置null讓其成為一次性作用
+                    //alert('onmouseup還在');
                     document.onmouseup = null;
                 };
             };

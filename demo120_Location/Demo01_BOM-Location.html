@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Location</title>
+    <script>
+        /*
+         Location
+         - 該對象中封裝了瀏覽器的地址欄的信息
+        */
+        window.onload = function () {
+            //獲取按鈕對象
+            var btn = document.getElementById('btn');
+
+            btn.onclick = function () {
+                //如果直接輸出location，則可以獲取到地址欄的信息(當前頁面的完整路徑)
+                //alert(location);
+
+                /*
+                 如果直接將location屬性修改為一個完整的路徑，或相對路徑
+                 則我們頁面會自動跳轉到該路徑，並且會生成相應的歷史記錄
+                */
+                //location = 'http://www.google.com';               
+                //location = '../demo118_Navigator/Demo01_BOM-Navigator.html';
+
+
+                /*
+                 assign()
+                 - 用來跳轉到其他的頁面，作用和直接修改location一樣
+                */
+                //location.assign('http://www.yahoo.com');
+
+
+                /*
+                 reload()
+                 - 用於重新加載當前頁面，作用和刷新按鈕一樣
+                 - 如果在方法中傳遞一個true，作為參數，則會強制清空緩存刷新頁面
+                */
+                //location.reload(true);
+
+
+                /*
+                 replace()
+                 - 可以使用一個新的頁面替換當前頁面，調用完畢也會跳轉頁面
+                   不會生成歷史記錄，不能使用回退按鈕回退
+                */
+                location.replace('../demo118_Navigator/Demo01_BOM-Navigator.html');
+            };
+        };
+    </script>
+</head>
+
+<body>
+    <button id="btn">點我一下</button>
+    <h1>Location</h1>
+    <input type="text" />
+    <a href="../demo118_Navigator/Demo01_BOM-Navigator.html">去BOM</a>
+</body>
+
+</html>
