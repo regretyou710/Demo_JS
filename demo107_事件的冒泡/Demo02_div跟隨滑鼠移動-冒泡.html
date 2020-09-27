@@ -11,8 +11,8 @@
             height: 100px;
             background-color: red;
             /*
-             * 開啟box1的絕對定位
-             */
+             開啟box1的絕對定位
+            */
             position: absolute;
         }
     </style>
@@ -28,7 +28,6 @@
             document.onmousemove = function (event) {
                 //解決兼容問題
                 event = event || window.event;
-
 
                 {
                     //獲取滾動條滾動的距離
@@ -71,13 +70,11 @@
                     //box1.style.left = left + "px";
                     //box1.style.top = top + "px";
 
-
                     //把滾動條的滾動距離加到偏移量，才不會造成滑鼠超過可見視窗時游標與div不在同一點上的情形
                     box1.style.left = left + sl + "px";
                     box1.style.top = top + st + "px";
                 }
             };
-
 
             //取消事件冒泡後box1就無法進入box2的範圍內
             var box2 = document.getElementById('box2');

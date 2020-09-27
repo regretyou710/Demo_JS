@@ -24,14 +24,12 @@
                 而且該操作只在當次訪問時有效
              Screen
               - 代表用戶的屏幕的信息，通過該對象可以獲取到用戶的顯示器的相關的信息
-          
-         
+                   
          這些BOM對象在瀏覽器中都是作為window對象的屬性保存的，可以通過window對象來使用，也可以直接使用
         */
         // console.log(navigator);
         // console.log(location);
         // console.log(history);
-
 
         /*
          Navigator
@@ -39,8 +37,7 @@
           - 由于歷史原因，Navigator對象中的大部分屬性都已經不能幫助我們識別瀏覽器了
           - 一般我們只會使用userAgent來判斷瀏覽器的信息，userAgent是一個字符串
             ，這個字符串中包含有用來描述瀏覽器信息的內容，不同的瀏覽器會有不同的userAgent
-             
-           
+                        
          火狐的userAgent
            Mozilla/5.0 (Windows NT 6.1; WOW64; rv:50.0) Gecko/20100101 Firefox/50.0
            
@@ -62,7 +59,6 @@
         */
         //alert(navigator.appName);
 
-
         var ua = navigator.userAgent;
         console.log(ua);
 
@@ -82,7 +78,6 @@
         } else if ('ActiveXObject' in window) {
             alert('你是IE11，槍斃了你~~~');
         }
-
 
         /*
          如果通過UserAgent不能判斷，還可以通過一些瀏覽器中特有的對象，來判斷瀏覽器的信息

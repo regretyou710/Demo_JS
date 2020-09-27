@@ -39,14 +39,12 @@
                 */
                 //alert(event.wheelDelta);
 
-
                 /* 
                  wheelDelta這個屬性火狐中不支持
                  在火狐中使用event.detail來獲取滾動的方向
                  向上滾 -3  向下滾 3
                 */
                 //alert(event.detail);
-
 
                 //判斷鼠標滾輪滾動的方向                
                 if (event.wheelDelta > 0 || event.detail < 0) {
@@ -73,7 +71,6 @@
                     return false;
                 }
             };
-
 
             //為火狐綁定滾輪事件
             /*

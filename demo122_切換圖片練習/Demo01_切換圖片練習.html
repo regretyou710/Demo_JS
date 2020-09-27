@@ -32,14 +32,12 @@
                 */
                 clearInterval(timer);
 
-
                 /*
                  開啟一個定時器，來自動切換圖片
                 */
                 timer = setInterval(function () {
                     //使索引自增
                     index++;
-
 
                     //判斷索引是否超過最大索引
                     //方式一:
@@ -50,11 +48,9 @@
                     //方式二:index = index % imgArr.length;
                     index %= imgArr.length;
 
-
                     //修改img1的src屬性
                     img1.src = imgArr[index];
                 }, 1000);
-
 
                 //為btn02綁定一個單擊響應函數
                 var btn02 = document.getElementById("btn02");

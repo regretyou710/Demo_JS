@@ -13,7 +13,6 @@
             position: absolute;
         }
 
-
         #box2 {
             width: 100px;
             height: 100px;
@@ -33,7 +32,6 @@
                  2. 當游標移動時被拖曳元素跟隨游標移動 onmousemove
                  3. 當游標鬆開時，被拖曳元素固定在當前位置 onmouseup
             */
-
             //獲取box1
             var box1 = document.getElementById("box1");
             var box2 = document.getElementById("box2");
@@ -41,12 +39,9 @@
 
             //開啟box1的拖曳
             drag(box1);
-
             //開啟box2的
             drag(box2);
-
             drag(img1);
-
 
             /*
              提取一個專門用來設置拖曳的函數
@@ -67,7 +62,6 @@
                     */
                     obj.setCapture && obj.setCapture();
 
-
                     event = event || window.event;
                     //獲取游標座標參考 demo106_div跟隨滑鼠移動\Demo01_div跟隨滑鼠移動.html
                     //div的偏移量 游標.clentX - 元素.offsetLeft
@@ -75,23 +69,19 @@
                     var ol = event.clientX - obj.offsetLeft;
                     var ot = event.clientY - obj.offsetTop;
 
-
                     //為document綁定一個onmousemove事件
                     document.onmousemove = function (event) {
                         event = event || window.event;
-
                         
                         //當游標移動時被拖曳元素跟隨游標移動 onmousemove
                         //獲取游標的坐標
                         var left = event.clientX - ol;
                         var top = event.clientY - ot;
 
-
                         //修改box1的位置
                         obj.style.left = left + "px";
                         obj.style.top = top + "px";
                     };
-
 
                     //為document綁定一個游標鬆開事件                   
                     document.onmouseup = function () {
@@ -99,16 +89,13 @@
                         //取消document的onmousemove事件
                         document.onmousemove = null;
 
-
                         //取消document的onmouseup事件
                         //因為滑鼠拖曳box1放開後就沒有必要在其他地方作用，所以設置null讓其成為一次性作用
                         document.onmouseup = null;
 
-
                         //(對於IE使用)當游標鬆開時，取消對事件的捕獲
                         obj.releaseCapture && obj.releaseCapture();
                     };
-
 
                     /*
                      當我們拖曳一個網頁中的內容時，瀏覽器會默認去搜索引擎中搜索內容，
