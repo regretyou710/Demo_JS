@@ -5,24 +5,88 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>定時器的應用(一)</title>
-    <style type="text/css">			
-        *{
+    <style type="text/css">
+        * {
             margin: 0;
             padding: 0;
         }
-        
-        #box1{
+
+        #box1 {
             width: 100px;
             height: 100px;
             background-color: red;
             position: absolute;
             left: 0;
-        }        
+            /* 在IE中沒有設置left默認auto，所以需設置0才能進行計算 */
+        }
     </style>
     <script>
+        window.onload = function () {
+
+            //獲取box1
+            var box1 = document.getElementById('box1');
+
+            //獲取btn01
+            var btn01 = document.getElementById('btn01');
+
+            //定義一個變量，用來保存定時器的標識
+            var timer;
+
+            //點擊按鈕以後，使box1向右移動(left值增大)
+            //此處使用定時器效果代替offsetLeft的偏移量移動
+            btn01.onclick = function () {
+                //關閉上一個定時器
+                clearInterval(timer);
+
+                //開啟一個定時器，用來執行動畫效果
+                timer = setInterval(function () {
+                    //獲取box1的原來的left值
+                    /*
+                     var str2 = '123px';
+                     str2 = parseInt(str2);
+                     console.log(str2);// 值為123
+                     console.log(typeof str2);// 轉為Number類型
+                     參考 demo011_強制類型轉換Number\Demo01_強制類型轉換Number.html
+                    */
+                    var oldValue = parseInt(getStyle(box1, 'left'));
+
+                    //在舊值的基礎上增加
+                    var newValue = oldValue + 1;
+
+                    //判斷newValue是否大於800
+                    //為了讓box1剛好停在800px上
+                    if (newValue > 800) {
+                        newValue = 800;
+                    }
+
+                    //將新值設置給box1
+                    box1.style.left = newValue + 'px';
+
+                    //當元素移動到800px時，使其停止執行動畫
+                    if (newValue == 800) {
+                        //達到目標，關閉定時器
+                        clearInterval(timer);
+                    }
+                }, 30);
+            };
+        };
+
+
         /*
-    
+         定義一個函數，用來獲取指定元素的當前的樣式
+         參數：
+              obj 要獲取樣式的元素
+              name 要獲取的樣式名
         */
+        function getStyle(obj, name) {
+            if (window.getComputedStyle) {
+                //正常瀏覽器的方式，具有getComputedStyle()方法
+                return getComputedStyle(obj, null)[name];
+            } else {
+                //IE8的方式，沒有getComputedStyle()方法
+                return obj.currentStyle[name];
+            }
+        };
     </script>
 </head>
 

@@ -5,14 +5,135 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>定時器的應用(二)</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #box1 {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            position: absolute;
+            left: 0;
+            /* 在IE中沒有設置left默認auto，所以需設置0才能進行計算 */
+        }
+    </style>
     <script>
-        /*
-    
-        */
+        window.onload = function () {
+            { //獲取box1
+                var box1 = document.getElementById('box1');
+
+                //獲取btn01
+                var btn01 = document.getElementById('btn01');
+
+                //獲取btn02
+                var btn02 = document.getElementById('btn02');
+
+                //點擊按鈕以後，使box1向右移動(left值增大)               
+                btn01.onclick = function () {
+                    move(box1, 800, 10);
+                };
+
+                //點擊按鈕以後，使box1向左移動（left值減小）
+                btn02.onclick = function () {
+                    move(box1, 0, 10);
+                };
+            }
+
+
+            {
+                //定義一個變量，用來保存定時器的標識
+                var timer;
+
+                //嘗試創建一個可以執行簡單動畫的函數
+                /*
+                 參數：
+                      obj:要執行動畫的對象
+                      target:執行動畫的目標位置
+                      speed:移動的速度(正數向右移動，負數向左移動)
+                */
+                function move(obj, target, speed) {
+                    //關閉上一個定時器
+                    clearInterval(timer);
+
+                    //獲取元素目前的位置
+                    var current = parseInt(getStyle(obj, 'left'));
+
+                    //判斷速度的正負值
+                    //如果從0 向 800移動，則speed為正
+                    //如果從800向0移動，則speed為負
+                    //為了不操作者不用考慮正負值的參數傳遞
+                    if (current > target) {
+                        //此時速度應為負值
+                        speed = -speed;
+                    }
+
+                    //開啟一個定時器，用來執行動畫效果
+                    timer = setInterval(function () {
+                        //獲取box1的原來的left值
+                        var oldValue = parseInt(getStyle(obj, 'left'));
+
+                        //在舊值的基礎上增加
+                        var newValue = oldValue + speed;
+
+                        //判斷newValue是否大於800
+                        //從800 向 0移動
+                        //向左移動時，需要判斷newValue是否小於target
+                        //向右移動時，需要判斷newValue是否大於target
+                        /*
+                         if (newValue > target || newValue < target) {
+                             newValue = target;
+                         }
+                         不寫只有 newValue > target 的判斷條件是因為只要兩者其一為true
+                         就會執行 newValue = target 所以第一次的定時調用時 newValue < target 
+                         會滿足條件，而導致一執行就到target然後滿足關閉定時器的條件
+                        */
+                        if ((speed < 0 && newValue < target) || (speed > 0 && newValue > target)) {
+                            newValue = target;
+                        }
+
+                        //將新值設置給box1
+                        obj.style.left = newValue + 'px';
+
+                        //當元素移動到0px時，使其停止執行動畫
+                        if (newValue == target) {
+                            //達到目標，關閉定時器
+                            clearInterval(timer);
+                        }
+                    }, 30);
+                };
+            }
+
+
+            {
+                /*
+                 定義一個函數，用來獲取指定元素的當前的樣式
+                 參數：
+                      obj 要獲取樣式的元素
+                      name 要獲取的樣式名
+                */
+                function getStyle(obj, name) {
+                    if (window.getComputedStyle) {
+                        //正常瀏覽器的方式，具有getComputedStyle()方法
+                        return getComputedStyle(obj, null)[name];
+                    } else {
+                        //IE8的方式，沒有getComputedStyle()方法
+                        return obj.currentStyle[name];
+                    }
+                };
+            }
+        };
     </script>
 </head>
 
 <body>
+    <button id="btn01">點擊按鈕以後box1向右移動</button>
+    <button id="btn02">點擊按鈕以後box1向左移動</button>
+    <br /><br />
+    <div id="box1"></div>
+    <div style="width: 0; height: 1000px; border-left:1px black solid; position: absolute; left: 800px;top:0;"></div>
 </body>
 
 </html>

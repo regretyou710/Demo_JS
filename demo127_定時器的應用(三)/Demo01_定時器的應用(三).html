@@ -5,14 +5,102 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>定時器的應用(三)</title>
+    <script type="text/javascript" src="js/tools.js"></script>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #box1 {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            position: absolute;
+            left: 0;
+            /* 在IE中沒有設置left默認auto，所以需設置0才能進行計算 */
+        }
+
+        #box2 {
+            width: 100px;
+            height: 100px;
+            background-color: yellow;
+            position: absolute;
+            left: 0;
+            top: 200px;
+        }
+    </style>
     <script>
-        /*
-    
-        */
+        window.onload = function () {
+            { //獲取box1
+                var box1 = document.getElementById('box1');
+
+                //獲取btn01
+                var btn01 = document.getElementById('btn01');
+
+                //獲取btn02
+                var btn02 = document.getElementById('btn02');
+
+                //點擊按鈕以後，使box1向右移動(left值增大)               
+                btn01.onclick = function () {
+                    move(box1, 'left', 800, 20);
+                };
+
+                //點擊按鈕以後，使box1向左移動（left值減小）
+                btn02.onclick = function () {
+                    move(box1, 'left', 0, 10);
+                };
+
+                //獲取btn03
+                var btn03 = document.getElementById('btn03');
+                btn03.onclick = function () {
+                    move(box2, 'left', 800, 10);
+                };
+
+                //測試按鈕
+                var btn04 = document.getElementById('btn04');
+                btn04.onclick = function () {
+                    //move(box2,'width', 800, 10);
+                    //move(box2,'top', 800, 10);
+                    //move(box2, 'height', 800, 10);
+                    move(box2, 'width', 800, 10, function () {
+                        move(box2, 'height', 400, 10, function () {
+                            move(box2, 'top', 0, 10, function () {
+                                move(box2, 'width', 100, 10, function () {
+
+                                });
+                            });
+                        });
+                    });
+                };
+            }
+
+
+            {
+                //定義一個變量，用來保存定時器的標識
+                /*
+                 目前我們的定時器的標識由全局變量timer保存，
+                 所有的執行正在執行的定時器都在這個變量中保存
+                */
+                //var timer;
+
+                //由外部文件引用js
+                //...
+                //....
+            }
+        };
     </script>
 </head>
 
 <body>
+    <button id="btn01">點擊按鈕以後box1向右移動</button>
+    <button id="btn02">點擊按鈕以後box1向左移動</button>
+    <button id="btn03">點擊按鈕以後box2向右移動</button>
+    <button id="btn04">測試按鈕</button>
+    <br /><br />
+    <div id="box1"></div>
+    <div id="box2"></div>
+    <div style="width: 0; height: 1000px; border-left:1px black solid; position: absolute; left: 800px;top:0;"></div>
 </body>
 
 </html>
