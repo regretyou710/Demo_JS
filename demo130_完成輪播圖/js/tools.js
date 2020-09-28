@@ -1,0 +1,90 @@
+{
+    //嘗試創建一個可以執行簡單動畫的函數
+    /*
+     參數：
+          obj:要執行動畫的對象
+          attr:要執行的動畫樣式，例如:left top width height
+          target:執行動畫的目標位置
+          speed:移動的速度(正數向右移動，負數向左移動)
+          callback:回調函數，這個函數將會在動會執行完畢以後執行
+    */
+    function move(obj, attr, target, speed, callback) {
+        //關閉上一個定時器
+        clearInterval(obj.timer);
+
+        //獲取元素目前的位置
+        var current = parseInt(getStyle(obj, attr));
+
+        //判斷速度的正負值
+        //如果從0 向 800移動，則speed為正
+        //如果從800向0移動，則speed為負
+        //為了不操作者不用考慮正負值的參數傳遞
+        if (current > target) {
+            //此時速度應為負值
+            speed = -speed;
+        }
+
+        //開啟一個定時器，用來執行動畫效果
+        //向執行動畫的對象中添加一個timer屬性，用來保存它自己的定時器標示
+        obj.timer = setInterval(function () {
+            //獲取box1的原來的left值
+            var oldValue = parseInt(getStyle(obj, attr));
+
+            //在舊值的基礎上增加
+            var newValue = oldValue + speed;
+
+            //判斷newValue是否大於800
+            //從800 向 0移動
+            //向左移動時，需要判斷newValue是否小於target
+            //向右移動時，需要判斷newValue是否大於target
+            /*
+             if (newValue > target || newValue < target) {
+                 newValue = target;
+             }
+             不寫只有 newValue > target 的判斷條件是因為只要兩者其一為true
+             就會執行 newValue = target 所以第一次的定時調用時 newValue < target 
+             會滿足條件，而導致一執行就到target然後滿足關閉定時器的條件
+            */
+            if ((speed < 0 && newValue < target) || (speed > 0 && newValue > target)) {
+                newValue = target;
+            }
+
+            //將新值設置給box1
+            obj.style[attr] = newValue + 'px';
+
+            //當元素移動到0px時，使其停止執行動畫
+            if (newValue == target) {
+                //達到目標，關閉定時器
+                clearInterval(obj.timer);
+
+                //動畫執行完畢，調用回調函數
+                /*
+                 解決不傳callback實參的情形:
+                 如果實參的數量少於形參數量，則沒有對應的實參的形參將會是undefined
+                 undefined轉布林為false
+                 如果callback形參有傳實參，則callback是函數對象類型，轉布林為true
+                */
+                callback && callback();
+            }
+        }, 30);
+    };
+}
+
+
+{
+    /*
+     定義一個函數，用來獲取指定元素的當前的樣式
+     參數：
+          obj 要獲取樣式的元素
+          name 要獲取的樣式名
+    */
+    function getStyle(obj, name) {
+        if (window.getComputedStyle) {
+            //正常瀏覽器的方式，具有getComputedStyle()方法
+            return getComputedStyle(obj, null)[name];
+        } else {
+            //IE8的方式，沒有getComputedStyle()方法
+            return obj.currentStyle[name];
+        }
+    };
+}

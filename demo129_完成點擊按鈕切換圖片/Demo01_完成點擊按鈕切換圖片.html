@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>完成輪播介面</title>
+    <title>完成點擊按鈕切換圖片</title>
     <style type="text/css">
         * {
             margin: 0;
@@ -89,6 +89,7 @@
             background-color: black;
         }
     </style>
+    <script type="text/javascript" src="js/tools.js"></script>
     <script>
         window.onload = function () {
             {
@@ -124,6 +125,63 @@
                 //設置默認選中的效果
                 allA[index].style.backgroundColor = "black";
             }
+
+
+            {
+                /*
+				 點擊超鏈接切換到指定的圖片
+				 點擊第一個超鏈接，顯示第一個圖片
+				 點擊第二個超鏈接，顯示第二個圖片
+				*/
+                //為所有的超鏈接都綁定單擊響應函數
+                for (var i = 0; i < allA.length; i++) {
+                    //為每一個超鏈接都添加一個num屬性
+                    //原因參考 demo100_a的索引問題\Demo01_a的索引問題.html
+                    allA[i].num = i;
+
+                    //為超鏈接綁定單擊響應函數
+                    allA[i].onclick = function () {
+                        //alert(this);
+                        //alert(i);
+
+                        //獲取點擊超鏈接的索引,并將其設置為index
+                        index = this.num;
+
+                        //切換圖片
+                        /*
+                         第一張  0 0
+                         第二張  1 -520
+                         第三張  2 -1040
+                        */
+                        //imgList.style.left = -520 * index + "px";
+
+                        //使用move函數來切換圖片
+                        move(imgList, 'left', -520 * index, 20, function () {
+
+                        });
+
+                        //設置選中的a
+                        setA();
+                    };
+                }
+            }
+
+
+            //創建一個方法用來設置選中的a
+            function setA() {
+
+                //遍歷所有a，并將它們的背景顏色設置為紅色
+                for (var i = 0; i < allA.length; i++) {
+                    /*
+                     因為內聯樣式優先級高於樣式表所以不設置空字串而是red的話
+                     游標移入的效果會被內聯樣式取代
+                    */
+                    allA[i].style.backgroundColor = "";
+                }
+
+                //將選中的a設置為黑色
+                allA[index].style.backgroundColor = "black";
+            };
         };
     </script>
 </head>
