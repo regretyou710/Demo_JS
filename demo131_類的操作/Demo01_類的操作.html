@@ -5,14 +5,121 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>類的操作</title>
+    <style type="text/css">
+        .b1 {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+        }
+
+        .b2 {
+            height: 300px;
+            background-color: yellow;
+        }
+    </style>
     <script>
+        window.onload = function () {
+            //獲取box
+            var box = document.getElementById('box');
+
+            //獲取btn01
+            var btn01 = document.getElementById('btn01');
+
+            //為btn01綁定單擊響應函數
+            btn01.onclick = function () {
+                //修改box的樣式
+                /*
+                 透過style屬性來修改元素的樣式，每修改一個樣式，瀏覽器就需要重新渲染一次頁面
+                 這樣的執行的性能是比較差的，而且這種形式當我們要修改多個樣式時，也不太方便
+                */
+                // box.style.width = '200px';
+                // box.style.height = '200px';
+                // box.style.backgroundColor = 'yellow';
+
+
+                //修改box的class屬性
+                /*
+                 我希望一行代碼，可以同時修改多個樣式
+
+                 我們可以透過修改元素的class屬性來間接的修改樣式，這樣一來我們只需要修改一次，
+                 即可同時修改多個樣式，瀏覽器只需要重新渲染頁面一次，性能比較好，並且這種方式，
+                 可以使表現和行為進一步的分離
+                */
+                //box.className += ' b2';
+                //addClass(box,'b2');
+
+                //alert(hasClass(box,'hello'));
+
+                //removeClass(box,'b2');
+
+                toggleClass(box, 'b2');
+            };
+        };
+
+
+        //定義一個函數，用來向一個元素中添加指定的class屬性值
         /*
-    
+         參數:
+             obj 要添加class屬性的元素
+             cn 要添加的class值         	
         */
+        function addClass(obj, cn) {
+            //檢查obj中是否含有cn
+            if (!hasClass(obj, cn)) {
+                obj.className += ' ' + cn;
+            }
+        };
+
+
+        /*
+         判斷一個元素中是否含有指定的class屬性值
+         如果有該class，則返回true，沒有則返回false
+        */
+        function hasClass(obj, cn) {
+            //判斷obj中有沒有cn class
+            //創建一個正則表達式
+            //var reg = /\bb2\b/;
+            var reg = new RegExp('\\b' + cn + '\\b');
+
+            return reg.test(obj.className);
+        };
+
+
+        /*
+         刪除一個元素中的指定的class屬性
+        */
+        function removeClass(obj, cn) {
+            //創建一個正則表達式
+            var reg = new RegExp('\\b' + cn + '\\b');
+
+            //刪除class
+            obj.className = obj.className.replace(reg, '');
+        };
+
+
+        /*
+         toggleClass可以用來切換一個類，相當於只要調用一個函數就可以達到添加或移除class
+         如果元素中具有該類，則刪除
+         如果元素中沒有該類，則添加
+        */
+        function toggleClass(obj, cn) {
+            //判斷obj中是否含有cn
+            if (hasClass(obj, cn)) {
+                //有，則刪除
+                removeClass(obj, cn);
+            } else {
+                //沒有，則添加
+                addClass(obj, cn);
+            }
+        };
     </script>
 </head>
 
 <body>
+    <button id="btn01">點擊按鈕以後修改box的樣式</button>
+    <br /><br />
+    <!-- class="b1 b2" 表示在b1原有的基礎下添加b2樣式 -->
+    <div id="box" class="b1 b2"></div>
 </body>
 
 </html>

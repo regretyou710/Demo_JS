@@ -93,26 +93,26 @@
         window.onload = function () {
             {
                 //獲取imgList
-                var imgList = document.getElementById("imgList");
+                var imgList = document.getElementById('imgList');
 
                 //獲取頁面中所有的img標簽
-                var imgArr = document.getElementsByTagName("img");
+                var imgArr = document.getElementsByTagName('img');
 
                 //設置imgList的寬度
-                imgList.style.width = 520 * imgArr.length + "px";
+                imgList.style.width = 520 * imgArr.length + 'px';
             }
 
 
             {
                 /*設置導航按鈕居中*/
                 //獲取navDiv
-                var navDiv = document.getElementById("navDiv");
+                var navDiv = document.getElementById('navDiv');
 
                 //獲取outer
-                var outer = document.getElementById("outer");
+                var outer = document.getElementById('outer');
 
                 //設置navDiv的left值
-                navDiv.style.left = (outer.offsetWidth - navDiv.offsetWidth) / 2 + "px";
+                navDiv.style.left = (outer.offsetWidth - navDiv.offsetWidth) / 2 + 'px';
             }
 
 
@@ -120,9 +120,9 @@
                 //默認顯示圖片的索引
                 var index = 0;
                 //獲取所有的a
-                var allA = document.getElementsByTagName("a");
+                var allA = document.getElementsByTagName('a');
                 //設置默認選中的效果
-                allA[index].style.backgroundColor = "black";
+                allA[index].style.backgroundColor = 'black';
             }
         };
     </script>

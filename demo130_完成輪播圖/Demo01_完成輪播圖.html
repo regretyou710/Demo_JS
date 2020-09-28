@@ -89,31 +89,31 @@
             background-color: black;
         }
     </style>
-    <script type="text/javascript" src="js/tools.js"></script>
+    <script type='text/javascript' src='js/tools.js'></script>
     <script>
         window.onload = function () {
             {
                 //獲取imgList
-                var imgList = document.getElementById("imgList");
+                var imgList = document.getElementById('imgList');
 
                 //獲取頁面中所有的img標簽
-                var imgArr = document.getElementsByTagName("img");
+                var imgArr = document.getElementsByTagName('img');
 
                 //設置imgList的寬度
-                imgList.style.width = 520 * imgArr.length + "px";
+                imgList.style.width = 520 * imgArr.length + 'px';
             }
 
 
             {
                 /*設置導航按鈕居中*/
                 //獲取navDiv
-                var navDiv = document.getElementById("navDiv");
+                var navDiv = document.getElementById('navDiv');
 
                 //獲取outer
-                var outer = document.getElementById("outer");
+                var outer = document.getElementById('outer');
 
                 //設置navDiv的left值
-                navDiv.style.left = (outer.offsetWidth - navDiv.offsetWidth) / 2 + "px";
+                navDiv.style.left = (outer.offsetWidth - navDiv.offsetWidth) / 2 + 'px';
             }
 
 
@@ -121,9 +121,9 @@
                 //默認顯示圖片的索引
                 var index = 0;
                 //獲取所有的a
-                var allA = document.getElementsByTagName("a");
+                var allA = document.getElementsByTagName('a');
                 //設置默認選中的效果
-                allA[index].style.backgroundColor = "black";
+                allA[index].style.backgroundColor = 'black';
             }
 
 
@@ -156,7 +156,7 @@
                          第二張  1 -520
                          第三張  2 -1040
                         */
-                        //imgList.style.left = -520 * index + "px";
+                        //imgList.style.left = -520 * index + 'px';
 
                         //使用move函數來切換圖片
                         move(imgList, 'left', -520 * index, 20, function () {
@@ -191,11 +191,11 @@
                      因為內聯樣式優先級高於樣式表所以不設置空字串而是red的話
                      游標移入的效果會被內聯樣式取代
                     */
-                    allA[i].style.backgroundColor = "";
+                    allA[i].style.backgroundColor = '';
                 }
 
                 //將選中的a設置為黑色
-                allA[index].style.backgroundColor = "black";
+                allA[index].style.backgroundColor = 'black';
             };
 
             //定義一個自動切換的定時器的標識
@@ -212,7 +212,7 @@
                     index %= imgArr.length;
 
                     //執行動畫，切換圖片
-                    move(imgList, "left", -520 * index, 20, function () {
+                    move(imgList, 'left', -520 * index, 20, function () {
                         //修改導航按鈕
                         setA();
                     });
