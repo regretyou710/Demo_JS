@@ -79,7 +79,8 @@
                      box2:onmousedown
                      body:onmousedown
                   
-                  而box1與box2不是父子元素關係而是兄弟元素關係，所以不會有事件的冒泡
+                  而box1與box2不是父子元素關係而是兄弟元素關係，滑鼠停在box2上時
+                  box1的onmouseup不會冒泡給box2，所以不會有事件的冒泡
                  */
                 document.onmouseup = function () { //box1.onmouseup = function () {
                     console.log('box1:onmouseup');
