@@ -65,12 +65,12 @@
 
                 //為document綁定一個游標鬆開事件
                 /*
-                  如果onmouseup綁定在box1身上，當box1與box2重疊且游標在box2身上時，此時會觸發box2的onmouseup，
-                  而box1的onmousemove效果還在，也就是說box1並沒有觸發onmouseup，會換成執行box2的onmouseup
-                  及onmousedown(因為box2在box1的上層)
+                  如果onmouseup綁定在box1身上，當box1與box2重疊且游標在box2身上時，此時會觸發
+                  box2的onmouseup，而box1的onmousemove效果還在，也就是說box1並沒有觸發onmouseup
+                  ，會換成執行box2的onmouseup及onmousedown(因為box2在box1的上層)
 
-                  box1的onmouseup、onmousemove、onmousedown都會冒泡給body，然後body會再委派給box2
-                  只是box2沒有設置偏移量所以看不出效果
+                  box1的onmouseup、onmousemove、onmousedown都會冒泡給body，然後body會再委派給
+                  box2只是box2沒有設置偏移量所以看不出效果
 
                   box1拖曳到box2重疊時：                     
                    - 滑鼠未放開:
@@ -86,7 +86,12 @@
                      box2:onmousedown
                      body:onmousedown
                   
-                  而box1與box2不是父子元素關係而是兄弟元素關係，所以不會有事件的冒泡
+                  而box1與box2不是父子元素關係而是兄弟元素關係，滑鼠停在box2上時
+                  box1的onmouseup不會冒泡給box2，所以不會有事件的冒泡。為了讓box1
+                  的onmouseup可以在與box2時觸發可以觸發，把它綁定在範圍較大document
+                  身上，藉由box2冒泡到body再冒泡到document，然後觸發onmouseup，再
+                  讓onmousemove賦予null，這樣就可以讓box1在box2重疊時放開滑鼠後還會
+                  移動的效果消失
                  */
                 document.onmouseup = function () { //box1.onmouseup = function () {
                     console.log('box1:onmouseup');

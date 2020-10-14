@@ -43,8 +43,11 @@
                 event = event || window.event;
 
                 //設置box1捕獲所有游標按下的事件
-                //當點擊box1時box1的onmousedown也冒泡到body，而body中的文本節點也是後代節點所以進行委派也會有onmousedown事件的存在只是沒有指派實際函數給它
                 /*
+                 當點擊box1時box1的onmousedown也冒泡到body，再利用setCapture()的特性
+                 ，將body的onmousedown觸發捕獲到box1身上，意味著box1的onmousedown事件
+                 不會傳到body文字上
+
                  setCapture()
                  - 只有IE支持，但是在火狐中調用時不會報錯，而如果使用chrome調用，會報錯
                 */
@@ -78,12 +81,12 @@
 
                 //為document綁定一個游標鬆開事件
                 /*
-                  如果onmouseup綁定在box1身上，當box1與box2重疊且游標在box2身上時，此時會觸發box2的onmouseup，
-                  而box1的onmousemove效果還在，也就是說box1並沒有觸發onmouseup，會換成執行box2的onmouseup
-                  及onmousedown(因為box2在box1的上層)
+                  如果onmouseup綁定在box1身上，當box1與box2重疊且游標在box2身上時，此時會觸發
+                  box2的onmouseup，而box1的onmousemove效果還在，也就是說box1並沒有觸發onmouseup
+                  ，會換成執行box2的onmouseup及onmousedown(因為box2在box1的上層)
 
-                  box1的onmouseup、onmousemove、onmousedown都會冒泡給body，然後body會再委派給box2
-                  只是box2沒有設置偏移量所以看不出效果
+                  box1的onmouseup、onmousemove、onmousedown都會冒泡給body，然後body會再委派給
+                  box2只是box2沒有設置偏移量所以看不出效果
 
                   box1拖曳到box2重疊時：                     
                    - 滑鼠未放開:
@@ -99,8 +102,13 @@
                      box2:onmousedown
                      body:onmousedown
                   
-                  而box1與box2不是父子元素關係而是兄弟元素關係，所以不會有事件的冒泡
-                */
+                  而box1與box2不是父子元素關係而是兄弟元素關係，滑鼠停在box2上時
+                  box1的onmouseup不會冒泡給box2，所以不會有事件的冒泡。為了讓box1
+                  的onmouseup可以在與box2時觸發可以觸發，把它綁定在範圍較大document
+                  身上，藉由box2冒泡到body再冒泡到document，然後觸發onmouseup，再
+                  讓onmousemove賦予null，這樣就可以讓box1在box2重疊時放開滑鼠後還會
+                  移動的效果消失
+                 */
                 document.onmouseup = function () { //box1.onmouseup = function () {
                     console.log('box1:onmouseup');
 
