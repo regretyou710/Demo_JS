@@ -24,7 +24,11 @@
             background-color: greenyellow;
             /*設置padding*/
             padding: 10px 0;
-            /*開啟相對定位*/
+            /*
+             開啟相對定位
+             為了imgList的包含塊是來自outer所以開啟定位，以免imgList的布局位置
+             定位在祖先元素的包含塊
+            */
             position: relative;
             /*裁剪溢出的內容*/
             overflow: hidden;
